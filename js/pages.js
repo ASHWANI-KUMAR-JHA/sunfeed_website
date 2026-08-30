@@ -1188,7 +1188,7 @@ function renderCertificationsSection() {
 // ==========================================================
 function renderClientsPage() {
   return `
-    ${renderBanner('Government & Institutional Clients', 'State nodal agency partnerships for large-scale renewable energy infrastructure across Bihar, Haryana, Himachal Pradesh, and more.', 'Verified Partners', 'Clients')}
+    ${renderBanner('Government & Institutional Clients', 'State nodal agency partnerships for large-scale renewable energy infrastructure across Bihar, Haryana, Himachal Pradesh, and more.', 'Verified Partners', 'Clients', 'images/clients.png')}
 
     <!-- Government Clients & Partners with Logos -->
     <section class="section section-white">
@@ -1330,7 +1330,7 @@ function renderClientsPage() {
 // ==========================================================
 function renderTechnologyPage() {
   return `
-    ${renderBanner('Technology & Remote Monitoring Systems (RMS)', 'Real-time IoT telemetry, 4G LTE/GPRS cloud communication, LiFePO4 battery management systems (BMS), and precision optical engineering.', 'IoT Telemetry & Standards', 'Engineering', 'images/technology_rms_banner.svg')}
+    ${renderBanner('Technology & Remote Monitoring Systems (RMS)', 'Real-time IoT telemetry, 4G LTE/GPRS cloud communication, LiFePO4 battery management systems (BMS), and precision optical engineering.', 'IoT Telemetry & Standards', 'Engineering', 'images/rms_pg.png')}
     <section class="section section-white">
       <div class="container">
         <div class="section-header">
@@ -1744,7 +1744,7 @@ function renderCertificationsPage() {
 // ==========================================================
 function renderContactPage() {
   return `
-    ${renderBanner('Contact Us & Project Consultation', 'Get in touch with our engineering team for technical queries, feasibility discussions, tender RFPs, and official corporate consultations.', 'Direct Inquiry & Corporate Office', 'Contact')}
+    ${renderBanner('Contact Us & Project Consultation', 'Get in touch with our engineering team for technical queries, feasibility discussions, tender RFPs, and official corporate consultations.', 'Direct Inquiry & Corporate Office', 'Contact', 'images/contact.png')}
     <section class="section section-white">
       <div class="container">
         <div class="contact-grid">

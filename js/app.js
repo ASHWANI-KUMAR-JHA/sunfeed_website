@@ -11,9 +11,28 @@ let bannerDismissed = false;
 let mobileMenuOpen = false;
 
 // ==========================================================
+// IMAGE PRELOADING FOR BANNER IMAGES
+// ==========================================================
+const bannerImages = [
+  'images/clients.png',
+  'images/contact.png',
+  'images/rms_pg.png',
+  'images/government_banner.jpeg'
+];
+
+// Preload images on page load
+function preloadBannerImages() {
+  bannerImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+
+// ==========================================================
 // INITIALIZATION
 // ==========================================================
 document.addEventListener('DOMContentLoaded', () => {
+  preloadBannerImages(); // Preload banner images first
   lucide.createIcons();
   initScrollProgress();
   initNavScroll();

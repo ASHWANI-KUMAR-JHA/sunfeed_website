@@ -681,12 +681,15 @@ ul { list-style: none; }
 
 /* Banner with background image */
 .page-banner.page-banner-img {
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-color: #171412;
   min-height: 360px;
   padding: 64px 0;
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 @media (min-width: 768px) { .page-banner.page-banner-img { min-height: 450px; padding: 80px 0; } }
 @media (min-width: 1024px) { .page-banner.page-banner-img { min-height: 520px; padding: 96px 0; } }

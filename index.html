@@ -32,6 +32,12 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
+  <!-- Preload banner images for faster loading -->
+  <link rel="preload" as="image" href="images/clients.png" />
+  <link rel="preload" as="image" href="images/contact.png" />
+  <link rel="preload" as="image" href="images/rms_pg.png" />
+  <link rel="preload" as="image" href="images/government_banner.jpeg" />
+
   <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css" />
 
@@ -123,19 +129,7 @@
             </div>
           </div>
 
-          <div class="nav-dropdown" onmouseenter="showDropdown('solutions')" onmouseleave="hideDropdown('solutions')">
-            <button type="button" class="nav-link" data-page="solutions" onclick="navigateTo('solutions')">
-              Solutions <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="dropdown-menu" id="dropdown-solutions">
-              <button type="button" onclick="navigateTo('solutions','sol-street-lighting')"><i data-lucide="sun"></i> Solar Street Lighting</button>
-              <button type="button" onclick="navigateTo('solutions','sol-high-mast')"><i data-lucide="tower-control"></i> Solar High Mast</button>
-              <button type="button" onclick="navigateTo('solutions','sol-solar-pv')"><i data-lucide="zap"></i> Solar PV Plants</button>
-              <button type="button" onclick="navigateTo('solutions','sol-battery-storage')"><i data-lucide="battery-charging"></i> Battery Storage</button>
-              <button type="button" onclick="navigateTo('solutions','sol-remote-monitoring')"><i data-lucide="activity"></i> Remote Monitoring</button>
-              <button type="button" onclick="navigateTo('solutions','sol-amc-maintenance')"><i data-lucide="wrench"></i> AMC / O&amp;M</button>
-            </div>
-          </div>
+          <button type="button" class="nav-link" data-page="solutions" onclick="navigateTo('solutions')">Solutions</button>
 
           <button type="button" class="nav-link" data-page="government" onclick="navigateTo('government')">Government Projects</button>
           <button type="button" class="nav-link" data-page="clients" onclick="navigateTo('clients')">Clients</button>
