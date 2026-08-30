@@ -489,7 +489,7 @@ function renderHomePage() {
     ${renderCertificationsSection()}
 
     <!-- Contact Section -->
-    <section class="section section-warm">
+    <section class="section section-warm" style="background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info">
