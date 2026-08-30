@@ -16,7 +16,7 @@ let mobileMenuOpen = false;
 const bannerImages = [
   'images/clients.png',
   'images/contact.png',
-  'images/contact_pg.png',
+  'images/contact_bg.png',
   'images/rms_pg.png',
   'images/government_banner.jpeg'
 ];

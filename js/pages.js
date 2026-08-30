@@ -1745,7 +1745,7 @@ function renderCertificationsPage() {
 function renderContactPage() {
   return `
     ${renderBanner('Contact Us & Project Consultation', 'Get in touch with our engineering team for technical queries, feasibility discussions, tender RFPs, and official corporate consultations.', 'Direct Inquiry & Corporate Office', 'Contact', 'images/contact.png')}
-    <section class="section section-white" style="background-image:url('images/contact_pg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
+    <section class="section section-white" style="background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info">
