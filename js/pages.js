@@ -466,6 +466,22 @@ function renderHomePage() {
         <div style="text-align:center;margin-top:24px;">
           <button type="button" class="btn-ghost" onclick="navigateTo('clients')">View All Clients & Partners <i data-lucide="arrow-right"></i></button>
         </div>
+
+        <!-- State-wise Operations Map -->
+        <div class="state-map-section">
+          <div class="section-header text-center" style="max-width:640px;margin:0 auto 28px;">
+            <div class="badge"><i data-lucide="map-pin"></i> Active Presence</div>
+            <h3 style="font-size:24px;font-weight:800;">State-wise Project Operations</h3>
+            <p style="font-size:13px;color:var(--muted);">Currently executing solar infrastructure projects across multiple Indian states through government nodal agency partnerships.</p>
+          </div>
+          <div class="state-map-wrapper scroll-scale">
+            <img src="images/state_wise_map.png" alt="Sunfeed Ecosolutions — State-wise Project Operations Map across India" loading="lazy">
+            <div class="state-map-caption">
+              <i data-lucide="map-pin"></i>
+              <span>Active operations in Bihar, Haryana, Himachal Pradesh, Uttarakhand & Tripura</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -487,30 +503,29 @@ function renderHomePage() {
       </div>
     </section>
 
-    <!-- Contact Compact -->
+    <!-- Contact Section -->
     <section class="section section-warm">
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info">
-            <div class="badge"><i data-lucide="mail"></i> Direct Inquiry</div>
-            <h2 style="font-size:30px;font-weight:800;">Connect with our Project Desk</h2>
-            <p style="font-size:14px;color:var(--muted);line-height:1.7;">Whether you are planning a state nodal agency tender, municipal lighting project, or rooftop solar power plant, our engineering team is ready to assist.</p>
+            <h3 style="font-size:20px;font-weight:700;">Get in Touch</h3>
+            <p style="font-size:14px;color:var(--muted);line-height:1.7;">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
+           
             <div class="contact-info-item">
               <div class="contact-info-icon"><i data-lucide="phone"></i></div>
               <div><span class="label">Landline</span><br><a href="tel:+911244072847">+91-124-4072847</a></div>
             </div>
             <div class="contact-info-item">
               <div class="contact-info-icon"><i data-lucide="mail"></i></div>
-              <div><span class="label">Official Email</span><br><a href="mailto:info@sunfeed.in">info@sunfeed.in</a></div>
+              <div><span class="label">Official Email</span><br><a href="mailto:info.sunfeed@gmail.com">info.sunfeed@gmail.com</a></div>
             </div>
             <div class="contact-info-item">
-              <div class="contact-info-icon"><i data-lucide="building"></i></div>
-              <div><span class="label">Corporate Office</span><br><span style="font-size:12px;color:var(--muted);font-weight:400;">527, 5th Floor, DLF Star Tower, Sector-30, Gurugram, Haryana - 122001</span></div>
+              <div class="contact-info-icon"><i data-lucide="map-pin"></i></div>
+              <div><span class="label">Corporate Office</span><br><span style="font-size:12px;color:var(--muted);font-weight:400;">${COMPANY.address}</span></div>
             </div>
-            <button type="button" class="btn-ghost" onclick="navigateTo('contact')">Go to Full Contact Page →</button>
           </div>
           <div>
-            ${renderContactForm('compact')}
+            ${renderContactForm('full')}
           </div>
         </div>
       </div>
@@ -572,250 +587,453 @@ function renderAboutPage() {
 }
 
 // ==========================================================
-// SOLUTIONS PAGE
+// SOLUTIONS PAGE — Detailed with unique content per solution
 // ==========================================================
 function renderSolutionsPage() {
+  const solutions = getSolutionsData();
   return `
-    <!-- Solutions Banner - Premium White Design -->
+    <!-- Solutions Banner -->
     <div class="solutions-banner">
       <div class="container solutions-container">
-        <!-- Left Content -->
         <div class="solutions-left">
           <div class="solutions-badge">WHAT WE DELIVER</div>
-          
           <h1 class="solutions-headline">
             Solar solutions <span class="red-text">engineered</span> for every scale
           </h1>
-          
           <p class="solutions-subheadline">
-            Rooftop, ground-mount, hybrid and floating solar systems, each designed, procured and installed by an in-house EPC team, not subcontracted out.
+            From street-level lighting to multi-megawatt power plants, each system is designed, procured and installed by our in-house EPC team — never subcontracted out.
           </p>
-          
-          <button type="button" class="solutions-cta" onclick="scrollToSection('services')">
-            Explore our solutions <i data-lucide="arrow-right"></i>
-          </button>
         </div>
-        
-        <!-- Right Visual -->
         <div class="solutions-right">
           <div class="solutions-visual">
-            <div class="visual-card card-1">
-              <div class="card-icon"><i data-lucide="sun"></i></div>
-              <div class="card-label">Street Lighting</div>
-            </div>
-            <div class="visual-card card-2">
-              <div class="card-icon"><i data-lucide="zap"></i></div>
-              <div class="card-label">Solar PV</div>
-            </div>
-            <div class="visual-card card-3">
-              <div class="card-icon"><i data-lucide="battery-charging"></i></div>
-              <div class="card-label">Battery Storage</div>
-            </div>
+            <div class="visual-card card-1"><div class="card-icon"><i data-lucide="sun"></i></div><div class="card-label">Street Lighting</div></div>
+            <div class="visual-card card-2"><div class="card-icon"><i data-lucide="zap"></i></div><div class="card-label">Solar PV</div></div>
+            <div class="visual-card card-3"><div class="card-icon"><i data-lucide="battery-charging"></i></div><div class="card-label">Battery Storage</div></div>
           </div>
         </div>
       </div>
     </div>
-    
-    <section class="section section-white">
+
+    <!-- Sticky solution nav tabs -->
+    <div class="sol-tab-bar" id="sol-tab-bar">
       <div class="container">
-        <div class="section-top">
-          <div class="section-header" style="margin-bottom:0">
-            <div class="badge"><i data-lucide="sun"></i> Turnkey Solutions</div>
-            <h2>Our 6 Core Engineering Solutions</h2>
-            <p>Complete renewable energy infrastructure with technical specifications, remote monitoring, and long-term maintenance support.</p>
+        <div class="sol-tabs-scroll">
+          ${solutions.map((s, i) => `<button type="button" class="sol-tab${i === 0 ? ' active' : ''}" data-target="sol-${s.id}" onclick="scrollToSolution('sol-${s.id}')"><i data-lucide="${s.icon}"></i><span>${s.shortName}</span></button>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Sections -->
+    ${solutions.map((s, i) => `
+    <section class="sol-detail-section ${i % 2 === 0 ? 'section-white' : 'section-warm'}" id="sol-${s.id}">
+      <div class="container">
+        <!-- Section header -->
+        <div class="sol-section-header">
+          <div class="sol-number">${String(i + 1).padStart(2, '0')}</div>
+          <div>
+            <div class="badge"><i data-lucide="${s.icon}"></i> ${s.badge}</div>
+            <h2 class="sol-section-title">${s.title}</h2>
           </div>
         </div>
-        
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;">
-          <!-- Solar Street Light -->
-          <div class="solution-card shine-on-scroll">
-            <div class="solution-card-inner">
-              <div class="solution-card-front">
-                <img src="images/solarstreet.png" alt="Solar Street Light" class="solution-image" loading="lazy">
-                <div class="solution-overlay">
-                  <span class="solution-badge">CORE INFRASTRUCTURE</span>
-                  <h3 class="solution-title">Solar Street Lighting</h3>
-                  <p class="solution-hint">Hover to view technical specifications</p>
-                </div>
-              </div>
-              <div class="solution-card-back">
-                <div class="spec-header">
-                  <i data-lucide="sun" style="width:20px;height:20px;"></i>
-                  <h3>Solar Street Light Specifications</h3>
-                </div>
-                <div class="spec-content">
-                  <div class="spec-row"><span>Solar PV:</span><strong>100W–900W</strong></div>
-                  <div class="spec-row"><span>LED Wattage:</span><strong>20W–150W</strong></div>
-                  <div class="spec-row"><span>Battery:</span><strong>LiFePO₄ 20Ah–60Ah</strong></div>
-                  <div class="spec-row"><span>Pole Height:</span><strong>7m–12m Galvanized</strong></div>
-                  <div class="spec-row"><span>Lighting Hours:</span><strong>10-12 hrs/night</strong></div>
-                  <div class="spec-row"><span>Backup:</span><strong>2-3 days</strong></div>
-                  <div class="spec-row"><span>Monitoring:</span><strong>4G GPS RMS</strong></div>
-                  <div class="spec-row"><span>Warranty:</span><strong>3-5 Years</strong></div>
-                </div>
-                <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
-              </div>
-            </div>
-          </div>
 
-          <!-- Solar High Mast -->
-          <div class="solution-card shine-on-scroll">
-            <div class="solution-card-inner">
-              <div class="solution-card-front">
-                <img src="images/solarhigh.png" alt="Solar High Mast" class="solution-image" loading="lazy">
-                <div class="solution-overlay">
-                  <span class="solution-badge">CORE INFRASTRUCTURE</span>
-                  <h3 class="solution-title">Solar High Mast</h3>
-                  <p class="solution-hint">Hover to view technical specifications</p>
-                </div>
-              </div>
-              <div class="solution-card-back">
-                <div class="spec-header">
-                  <i data-lucide="tower-control" style="width:20px;height:20px;"></i>
-                  <h3>Solar High Mast Specifications</h3>
-                </div>
-                <div class="spec-content">
-                  <div class="spec-row"><span>Mast Height:</span><strong>9m–12m</strong></div>
-                  <div class="spec-row"><span>LED Lights:</span><strong>4-8 units (50W-150W)</strong></div>
-                  <div class="spec-row"><span>Solar Capacity:</span><strong>1kWp–2.5kWp</strong></div>
-                  <div class="spec-row"><span>Battery:</span><strong>LiFePO₄ High Capacity</strong></div>
-                  <div class="spec-row"><span>Coverage:</span><strong>Wide-area illumination</strong></div>
-                  <div class="spec-row"><span>Structure:</span><strong>Hot-dip galvanized steel</strong></div>
-                  <div class="spec-row"><span>Applications:</span><strong>Highways, parking, industrial</strong></div>
-                  <div class="spec-row"><span>Warranty:</span><strong>3-5 Years</strong></div>
-                </div>
-                <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
-              </div>
-            </div>
+        <!-- Hero image + overview -->
+        <div class="sol-hero-grid">
+          <div class="sol-hero-img-wrap">
+            <img src="${s.image}" alt="${s.title}" loading="lazy" onclick="openImageModal('${s.image}','${s.title}')">
+            ${s.image2 ? `<img src="${s.image2}" alt="${s.title} diagram" loading="lazy" class="sol-hero-img-secondary" onclick="openImageModal('${s.image2}','${s.title} — Diagram')">` : ''}
           </div>
-
-          <!-- Solar PV -->
-          <div class="solution-card shine-on-scroll">
-            <div class="solution-card-inner">
-              <div class="solution-card-front">
-                <img src="images/solarpv.png" alt="Solar PV Plant" class="solution-image" loading="lazy">
-                <div class="solution-overlay">
-                  <span class="solution-badge">CORE INFRASTRUCTURE</span>
-                  <h3 class="solution-title">Solar PV Plants</h3>
-                  <p class="solution-hint">Hover to view technical specifications</p>
-                </div>
-              </div>
-              <div class="solution-card-back">
-                <div class="spec-header">
-                  <i data-lucide="zap" style="width:20px;height:20px;"></i>
-                  <h3>Solar PV Specifications</h3>
-                </div>
-                <div class="spec-content">
-                  <div class="spec-row"><span>Capacity:</span><strong>1kWp–20MW+</strong></div>
-                  <div class="spec-row"><span>Type:</span><strong>Rooftop & Ground-mounted</strong></div>
-                  <div class="spec-row"><span>Grid:</span><strong>On-Grid, Off-Grid, Hybrid</strong></div>
-                  <div class="spec-row"><span>Storage:</span><strong>Battery backup available</strong></div>
-                  <div class="spec-row"><span>Sectors:</span><strong>Commercial, Industrial, Govt</strong></div>
-                  <div class="spec-row"><span>Partners:</span><strong>HIMURJA & state agencies</strong></div>
-                  <div class="spec-row"><span>Turnkey:</span><strong>Supply, install, commission</strong></div>
-                  <div class="spec-row"><span>Support:</span><strong>Long-term O&M</strong></div>
-                </div>
-                <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Battery Storage -->
-          <div class="solution-card shine-on-scroll">
-            <div class="solution-card-inner">
-              <div class="solution-card-front">
-                <img src="images/batterystorage.png" alt="Battery Storage" class="solution-image" loading="lazy">
-                <div class="solution-overlay">
-                  <span class="solution-badge">CORE INFRASTRUCTURE</span>
-                  <h3 class="solution-title">Battery Storage Systems</h3>
-                  <p class="solution-hint">Hover to view technical specifications</p>
-                </div>
-              </div>
-              <div class="solution-card-back">
-                <div class="spec-header">
-                  <i data-lucide="battery-charging" style="width:20px;height:20px;"></i>
-                  <h3>Battery Storage Specifications</h3>
-                </div>
-                <div class="spec-content">
-                  <div class="spec-row"><span>Technology:</span><strong>Lithium Iron Phosphate</strong></div>
-                  <div class="spec-row"><span>Capacity:</span><strong>5kWh–100kWh+</strong></div>
-                  <div class="spec-row"><span>Cycle Life:</span><strong>4,000–6,000+ cycles</strong></div>
-                  <div class="spec-row"><span>BMS:</span><strong>Intelligent monitoring & balancing</strong></div>
-                  <div class="spec-row"><span>Protection:</span><strong>Multi-level safety systems</strong></div>
-                  <div class="spec-row"><span>Communication:</span><strong>CAN/RS485, remote monitoring</strong></div>
-                  <div class="spec-row"><span>Applications:</span><strong>Residential, commercial, industrial</strong></div>
-                  <div class="spec-row"><span>Warranty:</span><strong>5-10 Years</strong></div>
-                </div>
-                <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Remote Monitoring System -->
-          <div class="solution-card shine-on-scroll">
-            <div class="solution-card-inner">
-              <div class="solution-card-front">
-                <img src="images/rms.png" alt="Remote Monitoring System" class="solution-image" loading="lazy">
-                <div class="solution-overlay">
-                  <span class="solution-badge">CORE INFRASTRUCTURE</span>
-                  <h3 class="solution-title">Remote Monitoring (RMS)</h3>
-                  <p class="solution-hint">Hover to view technical specifications</p>
-                </div>
-              </div>
-              <div class="solution-card-back">
-                <div class="spec-header">
-                  <i data-lucide="activity" style="width:20px;height:20px;"></i>
-                  <h3>RMS Features & Capabilities</h3>
-                </div>
-                <div class="spec-content">
-                  <div class="spec-row"><span>GPS Tracking:</span><strong>Real-time location</strong></div>
-                  <div class="spec-row"><span>Light Status:</span><strong>ON/OFF monitoring</strong></div>
-                  <div class="spec-row"><span>Battery Monitor:</span><strong>Voltage & SOC tracking</strong></div>
-                  <div class="spec-row"><span>Charging:</span><strong>Solar charging status</strong></div>
-                  <div class="spec-row"><span>Fault Alerts:</span><strong>Automatic alarm system</strong></div>
-                  <div class="spec-row"><span>Platform:</span><strong>Web + Mobile app</strong></div>
-                  <div class="spec-row"><span>Communication:</span><strong>GSM/4G wireless</strong></div>
-                  <div class="spec-row"><span>Reports:</span><strong>Location-wise analytics</strong></div>
-                </div>
-                <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- AMC / O&M Maintenance -->
-          <div class="solution-card shine-on-scroll">
-            <div class="solution-card-inner">
-              <div class="solution-card-front">
-                <img src="images/factory_new.png" alt="AMC O&M Maintenance" class="solution-image" loading="lazy">
-                <div class="solution-overlay">
-                  <span class="solution-badge">CORE INFRASTRUCTURE</span>
-                  <h3 class="solution-title">AMC / O&M Support</h3>
-                  <p class="solution-hint">Hover to view technical specifications</p>
-                </div>
-              </div>
-              <div class="solution-card-back">
-                <div class="spec-header">
-                  <i data-lucide="wrench" style="width:20px;height:20px;"></i>
-                  <h3>Maintenance & Support Services</h3>
-                </div>
-                <div class="spec-content">
-                  <div class="spec-row"><span>Maintenance:</span><strong>Preventive & corrective</strong></div>
-                  <div class="spec-row"><span>Inspection:</span><strong>Regular system checks</strong></div>
-                  <div class="spec-row"><span>Fault Detection:</span><strong>Troubleshooting & repair</strong></div>
-                  <div class="spec-row"><span>Spare Parts:</span><strong>Replacement support</strong></div>
-                  <div class="spec-row"><span>Monitoring:</span><strong>Performance tracking</strong></div>
-                  <div class="spec-row"><span>Response:</span><strong>Rapid breakdown service</strong></div>
-                  <div class="spec-row"><span>Duration:</span><strong>Long-term AMC contracts</strong></div>
-                  <div class="spec-row"><span>Uptime:</span><strong>Maximum availability assurance</strong></div>
-                </div>
-                <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
-              </div>
-            </div>
+          <div class="sol-hero-text">
+            <p class="sol-overview">${s.overview}</p>
+            ${s.highlights.map(h => `<div class="sol-highlight-item"><i data-lucide="check-circle" style="width:18px;height:18px;color:#16A34A;flex-shrink:0;"></i><span>${h}</span></div>`).join('')}
+            <button type="button" class="btn-primary" onclick="navigateTo('contact')" style="margin-top:20px;">Get a Quote <i data-lucide="arrow-right"></i></button>
           </div>
         </div>
+
+        <!-- Specs table -->
+        <div class="sol-specs-card">
+          <h3><i data-lucide="clipboard-list" style="width:20px;height:20px;"></i> Technical Specifications</h3>
+          <div class="sol-specs-grid">
+            ${s.specs.map(sp => `<div class="sol-spec-item"><span class="sol-spec-label">${sp.label}</span><span class="sol-spec-value">${sp.value}</span></div>`).join('')}
+          </div>
+        </div>
+
+        <!-- Applications + Benefits -->
+        <div class="sol-two-col">
+          <div class="sol-col-card">
+            <h3><i data-lucide="target" style="width:18px;height:18px;color:#D42027;"></i> Key Applications</h3>
+            <ul class="sol-app-list">
+              ${s.applications.map(a => `<li>${a}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="sol-col-card">
+            <h3><i data-lucide="trending-up" style="width:18px;height:18px;color:#D42027;"></i> Benefits & Advantages</h3>
+            <ul class="sol-app-list sol-benefits-list">
+              ${s.benefits.map(b => `<li>${b}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+
+        ${s.howItWorks ? `
+        <!-- How It Works -->
+        <div class="sol-how-it-works">
+          <h3><i data-lucide="settings" style="width:18px;height:18px;color:#D42027;"></i> How It Works</h3>
+          <div class="sol-steps-row">
+            ${s.howItWorks.map((step, si) => `
+            <div class="sol-step-card">
+              <div class="sol-step-num">${si + 1}</div>
+              <h4>${step.title}</h4>
+              <p>${step.desc}</p>
+            </div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+      </div>
+    </section>
+    `).join('')}
+
+    <!-- CTA Section -->
+    <section class="section section-warm">
+      <div class="container" style="text-align:center;max-width:700px;margin:0 auto;">
+        <div class="badge"><i data-lucide="phone-call"></i> Ready to Start?</div>
+        <h2 style="margin:16px 0;">Let's Engineer Your Solar Project</h2>
+        <p style="color:var(--muted);margin-bottom:24px;">Submit your project requirements and our engineering team will provide a detailed feasibility assessment, BOQ, and competitive proposal within 48 hours.</p>
+        <button type="button" class="btn-primary" onclick="navigateTo('contact')">Submit Project RFP <i data-lucide="arrow-right"></i></button>
       </div>
     </section>
   `;
+}
+
+// ==========================================================
+// SOLUTIONS DATA — Rich unique content for each solution
+// ==========================================================
+function getSolutionsData() {
+  return [
+    {
+      id: 'street-lighting',
+      shortName: 'Street Lighting',
+      title: 'Solar Street Lighting Systems',
+      icon: 'sun',
+      badge: 'Core Infrastructure',
+      image: 'images/solarstreet.png',
+      image2: 'images/solar_street_light_image.png',
+      overview: 'Solar street lighting systems are self-contained, off-grid luminaires powered by photovoltaic panels and backed by lithium iron phosphate (LiFePO₄) battery storage. Each unit operates autonomously with dusk-to-dawn automation, eliminating grid dependency and recurring electricity costs. Sunfeed designs, supplies, installs and commissions these systems for state nodal agencies, gram panchayats, highway corridors and urban municipalities across India. With over 58,000 systems deployed under MGSSLY and other government schemes, our street lights are engineered for Indian climatic conditions — from the extreme heat of Bihar to the cold-altitude terrain of Himachal Pradesh.',
+      highlights: [
+        'Fully autonomous off-grid operation with dusk-to-dawn automation',
+        'LiFePO₄ batteries provide 2–3 days backup even during consecutive cloudy days',
+        '4G GPS-enabled Remote Monitoring System (RMS) for real-time asset tracking',
+        'Hot-dip galvanized steel poles (IS 2062 / IS 4759) with 25+ year structural life',
+        'MNRE benchmark compliant — meets Ministry specifications for government tenders',
+        '58,000+ units deployed across Bihar, Haryana, Himachal Pradesh and more',
+      ],
+      specs: [
+        { label: 'Solar Panel', value: '100W – 900W Mono PERC' },
+        { label: 'LED Luminaire', value: '20W – 150W (Bridgelux / Lumileds chip)' },
+        { label: 'Battery', value: 'LiFePO₄ 12.8V, 20Ah – 60Ah' },
+        { label: 'Pole Height', value: '7m – 12m Hot-dip Galvanized' },
+        { label: 'Lighting Duration', value: '10 – 12 hours per night' },
+        { label: 'Backup Autonomy', value: '2 – 3 consecutive rainy days' },
+        { label: 'Charge Controller', value: 'MPPT with overcharge protection' },
+        { label: 'Monitoring', value: '4G LTE / GPS RMS with cloud dashboard' },
+        { label: 'Lumen Output', value: '130 – 160 lm/W high-efficiency LEDs' },
+        { label: 'Operating Temp', value: '-10°C to +60°C' },
+        { label: 'Protection Rating', value: 'IP65 luminaire, IP67 battery enclosure' },
+        { label: 'Warranty', value: '3 – 5 years comprehensive' },
+      ],
+      applications: [
+        'Village roads and gram panchayat pathways under MGSSLY and state solar schemes',
+        'National and state highways — median and shoulder lighting for road safety',
+        'Urban municipality streets, parks, and pedestrian zones',
+        'Institutional campuses — schools, hospitals, government offices',
+        'Railway station approach roads and bus depot perimeters',
+        'Border area and defense establishment peripheral lighting',
+      ],
+      benefits: [
+        'Zero electricity bills — operates entirely on solar energy',
+        'Rapid deployment — no trenching, cabling, or grid connection required',
+        'Low maintenance — LiFePO₄ batteries last 5–7 years with minimal upkeep',
+        'Environmentally sustainable — reduces carbon emissions by ~1.5 tons/unit/year',
+        'Improves community safety — well-lit roads reduce accidents and crime',
+        'Government subsidy eligible under MNRE and state renewable energy programs',
+      ],
+      howItWorks: [
+        { title: 'Solar Charging', desc: 'During daylight hours, the mono-crystalline PV panel converts sunlight into DC electricity. The MPPT charge controller regulates voltage and current to optimally charge the LiFePO₄ battery pack.' },
+        { title: 'Energy Storage', desc: 'The lithium iron phosphate battery stores harvested solar energy with over 95% round-trip efficiency. Built-in BMS manages cell balancing, temperature protection, and deep-discharge prevention.' },
+        { title: 'Dusk-to-Dawn Lighting', desc: 'At sunset, an intelligent photosensor triggers the LED luminaire. Adaptive dimming profiles reduce power after midnight to extend backup autonomy while maintaining adequate illumination.' },
+        { title: 'Remote Monitoring', desc: 'Each unit transmits real-time data — battery SoC, charging current, GPS location, and fault alerts — via 4G LTE to a centralized cloud dashboard accessible by state nodal agencies.' },
+      ],
+    },
+    {
+      id: 'high-mast',
+      shortName: 'High Mast',
+      title: 'Solar High Mast Lighting Systems',
+      icon: 'tower-control',
+      badge: 'Wide-Area Illumination',
+      image: 'images/solarhigh.png',
+      image2: 'images/solar_high_mast_light_system_diagram.png',
+      overview: 'Solar high mast lighting towers provide elevated, wide-area illumination for locations where conventional street lights cannot offer sufficient coverage. These 9m to 12m polygonal steel structures support 4 to 8 multi-directional LED floodlights, each powered by a roof-mounted solar array and high-capacity LiFePO₄ battery bank. Sunfeed\'s high mast systems are engineered to withstand wind speeds up to 150 km/h (as per IS 875 Part 3) and are deployed at highway junctions, toll plazas, railway crossings, public squares, industrial yards, and defense installations. The entire assembly is hot-dip galvanized to IS 2629 / IS 4759 for corrosion protection and a structural life exceeding 25 years.',
+      highlights: [
+        '9m–12m octagonal/polygonal mast with motorized lowering mechanism',
+        '4–8 LED floodlights (50W–150W each) for 360° illumination coverage',
+        'High-capacity LiFePO₄ battery bank (100Ah–200Ah) for extended autonomy',
+        'Wind-rated structural design (up to 150 km/h per IS 875 Part 3)',
+        'Hot-dip galvanized to IS 2629 — minimum 86 micron zinc coating',
+        'Ideal for junctions, toll plazas, stadiums, industrial campuses, and border areas',
+      ],
+      specs: [
+        { label: 'Mast Height', value: '9m – 12m Polygonal Steel' },
+        { label: 'LED Floodlights', value: '4 – 8 units × 50W–150W each' },
+        { label: 'Total Lumens', value: '40,000 – 120,000 lm coverage' },
+        { label: 'Solar Array', value: '1 kWp – 2.5 kWp Mono PERC' },
+        { label: 'Battery Bank', value: 'LiFePO₄ 100Ah – 200Ah, 48V' },
+        { label: 'Wind Rating', value: 'Up to 150 km/h (IS 875 Pt 3)' },
+        { label: 'Galvanization', value: 'Hot-dip IS 2629 (≥86 μm)' },
+        { label: 'Foundation', value: 'M20 RCC with anchor bolt cage' },
+        { label: 'Lowering System', value: 'Motorized winch / manual' },
+        { label: 'Coverage Area', value: '1,500 – 3,000 sq.m per mast' },
+        { label: 'Protection', value: 'IP66 floodlights, IP67 battery' },
+        { label: 'Warranty', value: '3 – 5 years comprehensive' },
+      ],
+      applications: [
+        'Highway junctions, interchanges, and cloverleaf intersections',
+        'Toll plazas and weigh bridges on national/state highways',
+        'Railway level crossings and station approach areas',
+        'Public squares, parade grounds, and festival venues',
+        'Industrial yards, logistics parks, and warehouse perimeters',
+        'Sports facilities, stadiums, and large parking areas',
+      ],
+      benefits: [
+        'Single mast replaces 6–10 conventional street lights — reducing civil costs',
+        'Wide-area 360° illumination eliminates dark pockets at critical junctions',
+        'Off-grid operation — no recurring electricity or cabling expenditure',
+        'Motorized lowering system enables safe, ground-level maintenance',
+        'Corrosion-resistant galvanized structure withstands harsh environments',
+        'Compliant with Central and State Public Works Department specifications',
+      ],
+      howItWorks: [
+        { title: 'Elevated Solar Array', desc: 'A high-efficiency mono PERC solar array is mounted at the top of the mast using a tilt-adjustable frame, capturing maximum irradiance throughout the day and feeding the charge controller.' },
+        { title: 'Battery Bank Charging', desc: 'A high-capacity 48V LiFePO₄ battery bank stores energy in a weather-sealed ground-level enclosure. The intelligent BMS balances cells and protects against overcharge, deep discharge, and thermal runaway.' },
+        { title: 'Multi-Directional Lighting', desc: 'At dusk, 4–8 LED floodlights mounted on the crown assembly illuminate a coverage area of 1,500–3,000 sq.m. Programmable dimming profiles optimize energy use during low-traffic hours.' },
+        { title: 'Lowering for Maintenance', desc: 'The motorized winch mechanism allows the entire crown (lights + solar panels) to be lowered to ground level for safe, quick maintenance without scaffolding or aerial platforms.' },
+      ],
+    },
+    {
+      id: 'solar-pv',
+      shortName: 'Solar PV',
+      title: 'Solar PV / Power Plant Systems',
+      icon: 'zap',
+      badge: 'Clean Power Generation',
+      image: 'images/solarpv.png',
+      image2: 'images/solar_plan_diagram_image.png',
+      overview: 'Sunfeed designs and delivers turnkey solar photovoltaic power plants ranging from small 1 kWp rooftop installations to large multi-megawatt ground-mounted utility-scale projects. Our systems use Tier-1 mono PERC modules with 21%+ cell efficiency paired with high-performance string or central inverters and optional LiFePO₄ battery hybrid storage. We handle the complete project lifecycle — site assessment, system design, structural engineering, procurement, installation, grid synchronization, DISCOM net-metering approvals, testing, and commissioning. Our portfolio spans commercial, industrial, institutional, and government facilities, with active projects executed through state agencies like HIMURJA, HAREDA, and BREDA.',
+      highlights: [
+        'Turnkey EPC from 1 kWp rooftop to 20+ MW ground-mount utility scale',
+        'Tier-1 mono PERC modules with 21%+ cell efficiency and 25-year warranty',
+        'On-Grid, Off-Grid, and Hybrid configurations with optional battery storage',
+        'Complete DISCOM coordination for net-metering and grid synchronization',
+        'Real-time generation monitoring via cloud-based portal and mobile app',
+        'Projects executed under HIMURJA, HAREDA, BREDA, and KUSUM schemes',
+      ],
+      specs: [
+        { label: 'Capacity Range', value: '1 kWp – 20+ MW' },
+        { label: 'Module Technology', value: 'Mono PERC 540W – 580W (Tier-1)' },
+        { label: 'Cell Efficiency', value: '21% – 22.5%' },
+        { label: 'Inverter', value: 'String / Central (ABB, Growatt, Huawei)' },
+        { label: 'Mounting', value: 'Rooftop / Ground-mount / Carport' },
+        { label: 'Grid Type', value: 'On-Grid, Off-Grid, Hybrid' },
+        { label: 'Storage Option', value: 'LiFePO₄ 5 kWh – 500 kWh' },
+        { label: 'Degradation', value: '< 0.55% per year (25-year linear)' },
+        { label: 'Monitoring', value: 'WiFi / 4G cloud portal + mobile app' },
+        { label: 'Standards', value: 'IEC 61215, IEC 61730, MNRE specs' },
+        { label: 'Net Metering', value: 'Full DISCOM coordination' },
+        { label: 'Warranty', value: '25 years module, 5 years inverter' },
+      ],
+      applications: [
+        'Commercial and industrial rooftop installations for captive consumption',
+        'Government buildings, schools, hospitals, and public offices',
+        'Ground-mounted solar farms on barren or non-agricultural land',
+        'Agricultural solar pump stations under PM-KUSUM component-A and component-C',
+        'EV charging station solar canopy and carport structures',
+        'Hybrid solar + diesel replacement for telecom towers and remote sites',
+      ],
+      benefits: [
+        'Reduces electricity costs by 40–70% through captive solar generation',
+        'Net metering provides bill credits for excess power exported to the grid',
+        'Payback period of 3–5 years with 25+ years of free generation thereafter',
+        'Carbon footprint reduction — 1 MW offsets ~1,400 tons CO₂ annually',
+        'Government subsidies and accelerated depreciation tax benefits available',
+        'Increases property value and demonstrates corporate sustainability commitment',
+      ],
+      howItWorks: [
+        { title: 'Site Assessment & Design', desc: 'Our engineering team conducts shadow analysis, structural load assessment, and energy yield simulation (PVsyst/Helioscope) to design an optimally tilted and spaced array layout.' },
+        { title: 'Procurement & Installation', desc: 'Tier-1 modules, inverters, cables, and mounting structures are procured through approved supply chains. Certified technicians install the system following IEC and MNRE installation guidelines.' },
+        { title: 'Grid Sync & Net Metering', desc: 'After installation, we coordinate with the local DISCOM for bi-directional meter installation, safety inspection, and grid synchronization approval for net-metering benefits.' },
+        { title: 'Monitoring & O&M', desc: 'A cloud-based monitoring portal tracks daily generation, performance ratio, and system health. Our O&M team provides periodic cleaning, thermal scanning, and preventive maintenance.' },
+      ],
+    },
+    {
+      id: 'battery-storage',
+      shortName: 'Battery Storage',
+      title: 'LiFePO₄ Battery Storage Systems',
+      icon: 'battery-charging',
+      badge: 'Energy Storage',
+      image: 'images/batterystorage.png',
+      image2: 'images/life.png',
+      overview: 'Lithium Iron Phosphate (LiFePO₄) battery technology is at the core of every Sunfeed solar deployment. Unlike conventional lead-acid batteries, LiFePO₄ cells deliver over 4,000 deep-discharge cycles, maintain stable voltage throughout discharge, and operate safely across a wide temperature range (-10°C to +60°C) without thermal runaway risk. Sunfeed assembles battery packs in-house at our Mandsaur facility with multi-tier BMS integration, ensuring cell-level balancing, overcurrent protection, and remote health monitoring. Our battery systems power solar street lights, high mast towers, telecom backup, EV charging buffers, and residential/commercial energy storage — from 5 kWh residential walls to 500+ kWh containerized industrial banks.',
+      highlights: [
+        'LiFePO₄ chemistry — inherently safe with zero thermal runaway risk',
+        '4,000–6,000+ deep-discharge cycles at 80% DoD — 3× longer than lead-acid',
+        'In-house pack assembly with multi-tier BMS at Mandsaur manufacturing facility',
+        'Operating temperature range: -10°C to +60°C — ideal for Indian climatic extremes',
+        'Scalable from 5 kWh residential to 500+ kWh industrial containerized banks',
+        'Communication via CAN bus / RS485 / 4G for integration with RMS platforms',
+      ],
+      specs: [
+        { label: 'Chemistry', value: 'Lithium Iron Phosphate (LiFePO₄)' },
+        { label: 'Voltage', value: '12.8V / 25.6V / 48V / 51.2V packs' },
+        { label: 'Capacity Range', value: '20Ah – 200Ah per module' },
+        { label: 'Energy Range', value: '5 kWh – 500+ kWh scalable' },
+        { label: 'Cycle Life', value: '4,000 – 6,000+ cycles @ 80% DoD' },
+        { label: 'Round-trip Efficiency', value: '> 95%' },
+        { label: 'BMS', value: 'Cell balancing, OVP, UVP, OCP, OTP' },
+        { label: 'Communication', value: 'CAN bus / RS485 / 4G telemetry' },
+        { label: 'Operating Temp', value: '-10°C to +60°C' },
+        { label: 'Self-discharge', value: '< 3% per month' },
+        { label: 'Enclosure', value: 'IP67 weather-sealed housing' },
+        { label: 'Warranty', value: '5 – 10 years' },
+      ],
+      applications: [
+        'Solar street light and high mast battery packs (12.8V – 48V)',
+        'Residential energy storage walls for power backup and solar self-consumption',
+        'Commercial and industrial peak-shaving and load-shifting systems',
+        'Telecom tower backup replacing diesel generators',
+        'EV charging station buffer storage for grid demand management',
+        'Off-grid and micro-grid deployments in remote and rural areas',
+      ],
+      benefits: [
+        '3× longer cycle life than lead-acid — dramatically lower lifetime cost',
+        'Flat discharge curve maintains stable voltage throughout the cycle',
+        'No acid, no fumes, no maintenance — environmentally friendly and safe',
+        '70% lighter and 50% smaller than equivalent lead-acid capacity',
+        'In-house assembly ensures quality control and customization flexibility',
+        'Intelligent BMS enables remote health monitoring and predictive maintenance',
+      ],
+      howItWorks: [
+        { title: 'Cell Selection & Grading', desc: 'Grade-A prismatic LiFePO₄ cells are incoming-inspected for capacity, internal resistance, and voltage consistency. Only matched cells are grouped into series/parallel configurations for optimal pack performance.' },
+        { title: 'Pack Assembly & BMS', desc: 'Cells are assembled into packs with nickel bus-bar welding, temperature sensors, and a multi-tier BMS that handles cell balancing, overcurrent/overvoltage/under-voltage protection, and thermal management.' },
+        { title: 'Testing & Certification', desc: 'Each pack undergoes charge-discharge cycling, short-circuit testing, insulation resistance measurement, and environmental stress screening before dispatch. Packs are certified to relevant IEC/BIS standards.' },
+        { title: 'Deployment & Monitoring', desc: 'Packs are installed in IP67-rated enclosures at the deployment site. The BMS communicates battery health data — SoC, temperature, cycle count — to the centralized RMS cloud dashboard via 4G.' },
+      ],
+    },
+    {
+      id: 'remote-monitoring',
+      shortName: 'RMS / IoT',
+      title: 'Remote Monitoring Systems (RMS)',
+      icon: 'activity',
+      badge: 'IoT Telemetry',
+      image: 'images/rms.png',
+      image2: 'images/solar_mentoring_monitot_screen.png',
+      overview: 'Sunfeed\'s 4G LTE-enabled Remote Monitoring System (RMS) provides state nodal agencies and project stakeholders with complete real-time visibility into the health and performance of every deployed solar asset. Each RMS unit is a compact GSM/4G IoT module embedded within the solar controller housing that transmits GPS location, battery state-of-charge, charging current, luminaire ON/OFF status, and fault alerts to a centralized cloud dashboard. The platform supports district-wise filtering, location-based mapping, automated alarm dispatch, and exportable analytics reports. This telemetry infrastructure is mandatory for BREDA (MGSSLY), HAREDA, and HIMURJA government projects, and Sunfeed\'s RMS is fully compliant with the technical specifications laid down by these agencies.',
+      highlights: [
+        '4G LTE / GSM wireless communication for nationwide coverage',
+        'Real-time GPS tracking and geo-fencing for every solar asset',
+        'Battery SoC, voltage, charging current, and temperature monitoring',
+        'Automated fault alerts via SMS, email, and dashboard notifications',
+        'Web dashboard + Android/iOS mobile app for field teams and management',
+        'Fully compliant with BREDA, HAREDA, and HIMURJA RMS specifications',
+      ],
+      specs: [
+        { label: 'Communication', value: '4G LTE / 2G GSM fallback' },
+        { label: 'GPS', value: 'Multi-GNSS (GPS + GLONASS)' },
+        { label: 'Data Points', value: 'Battery V, I, SoC, Temp, Light status' },
+        { label: 'Transmission', value: 'Every 15 min (configurable 1–60 min)' },
+        { label: 'Platform', value: 'Cloud SaaS — web + mobile app' },
+        { label: 'Alerts', value: 'SMS, email, push notification' },
+        { label: 'Geo-fencing', value: 'Tamper / relocation detection' },
+        { label: 'Reports', value: 'Daily, weekly, monthly analytics (CSV/PDF)' },
+        { label: 'API', value: 'REST API for third-party integration' },
+        { label: 'Data Retention', value: '5+ years cloud storage' },
+        { label: 'Power', value: 'Parasitic draw < 0.5W from solar system' },
+        { label: 'Compliance', value: 'BREDA / HAREDA / HIMURJA specs' },
+      ],
+      applications: [
+        'Solar street light fleet monitoring for state nodal agency dashboards',
+        'High mast tower performance and fault tracking',
+        'Solar PV plant generation monitoring and performance ratio analysis',
+        'Battery health and degradation trend analysis over multi-year periods',
+        'District-wise and gram panchayat-level project progress tracking',
+        'Warranty claim validation through historical operational data',
+      ],
+      benefits: [
+        'Complete fleet visibility — monitor thousands of assets from a single dashboard',
+        'Automated fault detection reduces downtime from days to hours',
+        'GPS tracking prevents theft and detects unauthorized asset relocation',
+        'Data-driven maintenance scheduling extends system life and reduces costs',
+        'Exportable reports satisfy government audit and compliance requirements',
+        'Mobile app empowers field technicians with location-specific diagnostics',
+      ],
+      howItWorks: [
+        { title: 'IoT Module Embedding', desc: 'A compact 4G IoT module with GPS antenna is embedded in the solar charge controller housing during manufacturing. It draws less than 0.5W from the solar system and operates 24/7.' },
+        { title: 'Data Collection', desc: 'The module samples battery voltage, charging current, SoC, temperature, and luminaire status every minute. Aggregated data packets are transmitted to the cloud server every 15 minutes via 4G LTE.' },
+        { title: 'Cloud Processing', desc: 'The cloud platform processes incoming telemetry, runs anomaly detection algorithms, and triggers automated alerts for fault conditions — low battery, charging failure, light malfunction, or GPS tamper.' },
+        { title: 'Dashboard & Reporting', desc: 'Stakeholders access a responsive web dashboard and mobile app with live maps, asset-level drill-down, district-wise filtering, trend charts, and exportable CSV/PDF reports for compliance audits.' },
+      ],
+    },
+    {
+      id: 'amc-maintenance',
+      shortName: 'AMC / O&M',
+      title: 'Annual Maintenance & O&M Services',
+      icon: 'wrench',
+      badge: 'Long-Term Support',
+      image: 'images/factory_new.png',
+      image2: 'images/MAINTENANCE  O&M_image.png',
+      overview: 'Sunfeed provides structured Annual Maintenance Contracts (AMC) and Operations & Maintenance (O&M) services for solar infrastructure deployed across India. Our maintenance framework is designed for large-scale government projects where uptime guarantees, rapid response times, and documented compliance are critical. We operate district-level maintenance hubs with equipped service vans, trained field technicians, and pre-positioned spare parts inventories. The maintenance program covers preventive inspection schedules, corrective breakdown response, component replacement, RMS-driven predictive maintenance, and comprehensive documentation for state nodal agency audits. With 58,000+ solar assets under active monitoring, our O&M team ensures sustained performance throughout the project\'s warranty and post-warranty lifecycle.',
+      highlights: [
+        'District-level maintenance hubs with dedicated service vans and spare parts',
+        '48-hour emergency response SLA for critical breakdown situations',
+        'Preventive maintenance schedules — quarterly cleaning, annual inspection',
+        'RMS-driven predictive maintenance using real-time battery and system data',
+        'Component replacement support — panels, batteries, LEDs, controllers',
+        'Comprehensive compliance documentation for government audit and reporting',
+      ],
+      specs: [
+        { label: 'Contract Duration', value: '1 – 7 years (extendable)' },
+        { label: 'Response Time', value: '< 48 hours for critical faults' },
+        { label: 'Preventive Schedule', value: 'Quarterly cleaning, bi-annual checkup' },
+        { label: 'Coverage', value: 'PV, battery, LED, controller, structure' },
+        { label: 'Spare Inventory', value: 'District-level pre-positioned stock' },
+        { label: 'Field Teams', value: 'Trained technicians with service vans' },
+        { label: 'Monitoring', value: 'RMS-integrated fault-driven dispatch' },
+        { label: 'Documentation', value: 'Digital work orders, photo evidence' },
+        { label: 'Reporting', value: 'Monthly uptime and performance reports' },
+        { label: 'Escalation', value: 'L1 Field → L2 District → L3 HQ' },
+        { label: 'Compliance', value: 'BREDA / HAREDA / HIMURJA norms' },
+        { label: 'Uptime Target', value: '> 95% fleet operational availability' },
+      ],
+      applications: [
+        'Post-installation warranty maintenance for government solar lighting projects',
+        'Extended post-warranty AMC for 58,000+ solar street lights across Bihar',
+        'High mast tower maintenance including motorized crown lowering and inspection',
+        'Solar PV plant O&M — panel cleaning, inverter health checks, DC string testing',
+        'Battery health monitoring and proactive replacement scheduling',
+        'Emergency rapid-response for storm damage, vandalism, or component failure',
+      ],
+      benefits: [
+        'Guaranteed uptime SLA protects government project performance metrics',
+        'Preventive approach extends asset life and reduces total cost of ownership',
+        'RMS integration enables proactive maintenance before failures occur',
+        'District-level hubs ensure quick response even in remote rural locations',
+        'Digital documentation satisfies audit and compliance requirements seamlessly',
+        'Single-vendor accountability — same team that installed also maintains',
+      ],
+      howItWorks: [
+        { title: 'RMS Alert Triage', desc: 'The RMS platform continuously monitors all assets. When anomalies are detected (low battery, charging failure, light outage), automated work orders are generated and dispatched to the nearest district maintenance hub.' },
+        { title: 'Field Dispatch', desc: 'A trained technician with a pre-stocked service van is dispatched to the site. The mobile app provides GPS navigation, asset history, fault diagnosis, and a digital work-order checklist.' },
+        { title: 'Repair & Replacement', desc: 'On-site diagnostics confirm the fault. The technician performs the repair or component replacement, documents the activity with timestamped photographs, and updates the digital work order.' },
+        { title: 'Verification & Reporting', desc: 'Post-repair, the RMS confirms the asset is back online and operating normally. Monthly reports summarizing uptime, interventions, and component replacements are submitted to the nodal agency.' },
+      ],
+    },
+  ];
 }
 
 // ==========================================================
@@ -838,6 +1056,25 @@ function renderGovernmentPage() {
 
   return `
     ${renderBanner('Government & Institutional Solar Projects', 'Active solar implementation partner for state nodal agencies including BREDA (Bihar), HAREDA (Haryana), and HIMURJA (Himachal Pradesh).', 'State Nodal Operations', 'Projects', 'images/government_banner.jpeg')}
+
+    <!-- State-wise Operations Map -->
+    <section class="section section-warm" style="padding:48px 0;">
+      <div class="container">
+        <div class="section-header text-center" style="max-width:640px;margin:0 auto 28px;">
+          <div class="badge"><i data-lucide="map-pin"></i> Geographic Footprint</div>
+          <h3 style="font-size:24px;font-weight:800;">State-wise Project Operations Map</h3>
+          <p style="font-size:13px;color:var(--muted);">Active solar infrastructure deployments under state nodal agency partnerships across India.</p>
+        </div>
+        <div class="state-map-wrapper map-wide scroll-scale" style="margin:0 auto;">
+          <img src="images/state_wise_map.png" alt="Sunfeed Ecosolutions — State-wise Project Operations Map across India" loading="lazy">
+          <div class="state-map-caption">
+            <i data-lucide="map-pin"></i>
+            <span>BREDA (Bihar) · HAREDA (Haryana) · HIMURJA (Himachal Pradesh) · UREDA (Uttarakhand) · TREDA (Tripura)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-white">
       <div class="container">
         <div style="display:flex;flex-direction:column;gap:32px;">
@@ -1626,12 +1863,44 @@ function renderContactForm(variant) {
           <label for="cf-state">Target State</label>
           <select id="cf-state">
             <option value="">Select state</option>
+            <option>Andhra Pradesh</option>
+            <option>Arunachal Pradesh</option>
+            <option>Assam</option>
             <option>Bihar</option>
+            <option>Chhattisgarh</option>
+            <option>Goa</option>
+            <option>Gujarat</option>
             <option>Haryana</option>
             <option>Himachal Pradesh</option>
-            <option>Uttarakhand</option>
+            <option>Jharkhand</option>
+            <option>Karnataka</option>
+            <option>Kerala</option>
+            <option>Madhya Pradesh</option>
+            <option>Maharashtra</option>
+            <option>Manipur</option>
+            <option>Meghalaya</option>
+            <option>Mizoram</option>
+            <option>Nagaland</option>
+            <option>Odisha</option>
+            <option>Punjab</option>
+            <option>Rajasthan</option>
+            <option>Sikkim</option>
+            <option>Tamil Nadu</option>
+            <option>Telangana</option>
             <option>Tripura</option>
-            <option>Other</option>
+            <option>Uttar Pradesh</option>
+            <option>Uttarakhand</option>
+            <option>West Bengal</option>
+            <optgroup label="Union Territories">
+              <option>Andaman & Nicobar Islands</option>
+              <option>Chandigarh</option>
+              <option>Dadra & Nagar Haveli and Daman & Diu</option>
+              <option>Delhi</option>
+              <option>Jammu & Kashmir</option>
+              <option>Ladakh</option>
+              <option>Lakshadweep</option>
+              <option>Puducherry</option>
+            </optgroup>
           </select>
         </div>
       </div>
@@ -1663,10 +1932,72 @@ function renderContactForm(variant) {
 
 function handleContactSubmit(e) {
   e.preventDefault();
-  const success = document.getElementById('form-success');
-  if (success) {
-    success.classList.remove('hidden');
-    setTimeout(() => success.classList.add('hidden'), 5000);
+
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  // Collect form data
+  const data = {
+    name:         document.getElementById('cf-name')?.value?.trim() || '',
+    organization: document.getElementById('cf-org')?.value?.trim() || '',
+    email:        document.getElementById('cf-email')?.value?.trim() || '',
+    phone:        document.getElementById('cf-phone')?.value?.trim() || '',
+    projectType:  document.getElementById('cf-type')?.value || '',
+    targetState:  document.getElementById('cf-state')?.value || '',
+    district:     document.getElementById('cf-district')?.value?.trim() || '',
+    quantity:     document.getElementById('cf-qty')?.value?.trim() || '',
+    notes:        document.getElementById('cf-notes')?.value?.trim() || ''
+  };
+
+  // Disable button while submitting
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Submitting... <i data-lucide="loader"></i>';
+
+  // ─── IMPORTANT: Replace this URL with your Google Apps Script Web App URL ───
+  const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzuU--elG4XRTAeFVuY0VatOlNDu8J29boRoGLWe8d86WDJMUWmky2HvX6X1xVQ48e_Zw/exec';
+
+  if (GOOGLE_SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+    console.warn('⚠️ Google Sheets integration not configured. Replace GOOGLE_SHEET_URL in pages.js with your Apps Script Web App URL.');
+    showContactSuccessPopup(data.name);
+    form.reset();
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit Inquiry <i data-lucide="arrow-right"></i>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    return;
   }
-  e.target.reset();
+
+  fetch(GOOGLE_SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    showContactSuccessPopup(data.name);
+    form.reset();
+  })
+  .catch(err => {
+    console.error('Form submission error:', err);
+    alert('Something went wrong. Please try again or contact us directly at info@sunfeed.in');
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit Inquiry <i data-lucide="arrow-right"></i>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+}
+
+// Show success popup after form submission
+function showContactSuccessPopup(name) {
+  const popup = document.getElementById('contact-success-popup');
+  if (!popup) return;
+  const nameEl = document.getElementById('popup-user-name');
+  if (nameEl) nameEl.textContent = name || 'there';
+  popup.classList.add('open');
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+function closeContactSuccessPopup() {
+  const popup = document.getElementById('contact-success-popup');
+  if (popup) popup.classList.remove('open');
 }

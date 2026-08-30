@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Submissions Dashboard — Sunfeed Ecosolutions</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #DC2626;
+      --red-hover: #B91C1C;
+      --red-light: rgba(220, 38, 38, 0.08);
+      --red-subtle: #FEF2F2;
+      --dark: #0F172A;
+      --slate: #475569;
+      --muted: #64748B;
+      --green: #059669;
+      --green-light: #F0FDF4;
+      --amber: #D97706;
+      --amber-light: #FFFBEB;
+      --blue: #2563EB;
+      --blue-light: #EFF6FF;
+      --bg: #F8FAFC;
+      --white: #FFFFFF;
+      --border: #E2E8F0;
+      --border-warm: #E7E3DD;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 14px 28px -4px rgba(0,0,0,0.08);
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--dark);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── Dashboard Layout ── */
+    .dash-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .dash-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dash-header-left .logo-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--red);
+    }
+    .dash-header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .dash-header h1 span { color: var(--muted); font-weight: 400; font-size: 14px; margin-left: 8px; }
+    .dash-header-right { display: flex; align-items: center; gap: 12px; }
+
+    .dash-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* ── Stat Cards ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+    .stat-icon {
+      width: 42px; height: 42px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .stat-icon svg { width: 20px; height: 20px; }
+    .stat-icon.red { background: var(--red-light); color: var(--red); }
+    .stat-icon.green { background: var(--green-light); color: var(--green); }
+    .stat-icon.blue { background: var(--blue-light); color: var(--blue); }
+    .stat-icon.amber { background: var(--amber-light); color: var(--amber); }
+    .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-value { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800; color: var(--dark); line-height: 1.2; margin-top: 2px; }
+    .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Filters ── */
+    .filter-bar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+      box-shadow: var(--shadow-sm);
+    }
+    .filter-group { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 160px; }
+    .filter-group label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .filter-group input,
+    .filter-group select {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--dark);
+      background: var(--white);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .filter-group input:focus,
+    .filter-group select:focus { border-color: var(--red); }
+
+    .filter-actions { display: flex; gap: 8px; align-items: flex-end; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 600; font-family: inherit;
+      cursor: pointer; border: none; transition: all var(--transition);
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn svg { width: 14px; height: 14px; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-hover); }
+    .btn-outline { background: transparent; color: var(--slate); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); }
+    .btn-ghost { background: transparent; color: var(--muted); padding: 8px; }
+    .btn-ghost:hover { color: var(--red); background: var(--red-light); }
+    .btn-sm { padding: 6px 10px; font-size: 12px; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── Table ── */
+    .table-wrapper {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead { background: #F8FAFC; border-bottom: 2px solid var(--border); }
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    thead th:hover { color: var(--red); }
+    thead th .sort-arrow { margin-left: 4px; font-size: 10px; opacity: 0.4; }
+    thead th.sorted .sort-arrow { opacity: 1; color: var(--red); }
+    tbody tr { border-bottom: 1px solid #F1F5F9; transition: background var(--transition); }
+    tbody tr:hover { background: #FAFBFC; }
+    tbody tr:last-child { border-bottom: none; }
+    td { padding: 12px 16px; color: var(--slate); vertical-align: top; }
+    td.name-cell { font-weight: 600; color: var(--dark); white-space: nowrap; }
+    td.email-cell a { color: var(--blue); text-decoration: none; }
+    td.email-cell a:hover { text-decoration: underline; }
+    td.phone-cell { white-space: nowrap; }
+    td.notes-cell { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    td.notes-cell:hover { white-space: normal; overflow: visible; }
+    td.date-cell { white-space: nowrap; font-size: 12px; color: var(--muted); }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .badge-red { background: var(--red-light); color: var(--red); }
+    .badge-green { background: var(--green-light); color: var(--green); }
+    .badge-blue { background: var(--blue-light); color: var(--blue); }
+    .badge-amber { background: var(--amber-light); color: var(--amber); }
+    .badge-gray { background: #F1F5F9; color: var(--muted); }
+
+    /* ── Pagination ── */
+    .table-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      background: #FAFBFC;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .table-footer-info { font-size: 12px; color: var(--muted); }
+    .pagination { display: flex; align-items: center; gap: 4px; }
+    .pagination button {
+      width: 32px; height: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--slate);
+      font-size: 13px; font-weight: 600; font-family: inherit;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .pagination button:hover:not(:disabled) { border-color: var(--red); color: var(--red); }
+    .pagination button.active { background: var(--red); color: white; border-color: var(--red); }
+    .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
+    .pagination .page-ellipsis { padding: 0 4px; color: var(--muted); font-size: 13px; }
+    .per-page-select {
+      display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted);
+    }
+    .per-page-select select {
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 4px 8px; font-size: 12px; font-family: inherit; background: var(--white);
+      cursor: pointer; outline: none;
+    }
+
+    /* ── Loading & Empty States ── */
+    .loading-state, .empty-state, .error-state {
+      text-align: center; padding: 60px 20px;
+    }
+    .loading-spinner {
+      width: 40px; height: 40px; border: 3px solid var(--border);
+      border-top-color: var(--red); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .empty-state svg { width: 48px; height: 48px; color: var(--border); margin-bottom: 12px; }
+    .empty-state p { color: var(--muted); font-size: 14px; }
+    .error-state p { color: var(--red); font-size: 14px; }
+
+    /* ── Row Detail Modal ── */
+    .detail-overlay {
+      position: fixed; inset: 0; background: rgba(15,23,42,0.5);
+      display: none; align-items: center; justify-content: center;
+      z-index: 1000; padding: 16px; backdrop-filter: blur(4px);
+    }
+    .detail-overlay.open { display: flex; }
+    .detail-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      max-width: 560px; width: 100%; padding: 32px;
+      box-shadow: var(--shadow-lg); position: relative;
+      max-height: 90vh; overflow-y: auto;
+      animation: slideUp 0.2s ease;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .detail-close {
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #F1F5F9; border: none; color: var(--slate);
+      font-size: 18px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .detail-close:hover { background: var(--red-light); color: var(--red); }
+    .detail-row { display: flex; gap: 8px; padding: 10px 0; border-bottom: 1px solid #F1F5F9; }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { font-size: 12px; font-weight: 600; color: var(--muted); min-width: 120px; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+    .detail-value { font-size: 14px; color: var(--dark); word-break: break-word; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .dash-header { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+      .dash-header h1 { font-size: 15px; }
+      .dash-header h1 span { display: none; }
+      .dash-container { padding: 16px; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .stat-card { padding: 14px; }
+      .stat-value { font-size: 22px; }
+      .filter-bar { padding: 12px; gap: 8px; }
+      .filter-group { min-width: 100%; }
+      .table-footer { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="dash-header">
+    <div class="dash-header-left">
+      <div class="logo-dot"></div>
+      <h1>Contact Submissions <span>Dashboard</span></h1>
+    </div>
+    <div class="dash-header-right">
+      <button class="btn btn-outline btn-sm" onclick="fetchData()" id="refresh-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Refresh
+      </button>
+      <button class="btn btn-primary btn-sm" onclick="exportCSV()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export CSV
+      </button>
+    </div>
+  </header>
+
+  <div class="dash-container">
+    <!-- Stat Cards -->
+    <div class="stat-grid" id="stat-grid">
+      <div class="stat-card">
+        <div class="stat-icon red">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="stat-label">Total Submissions</div>
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-sub">All time</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <div class="stat-label">This Month</div>
+          <div class="stat-value" id="stat-month">—</div>
+          <div class="stat-sub" id="stat-month-label">Current month</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="stat-label">Top Project Type</div>
+          <div class="stat-value" id="stat-top-type" style="font-size:16px;margin-top:4px;">—</div>
+          <div class="stat-sub" id="stat-top-type-count"></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon amber">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="stat-label">Top State</div>
+          <div class="stat-value" id="stat-top-state" style="font-size:16px;margin-top:4px;">—</div>
+          <div class="stat-sub" id="stat-top-state-count"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label>Search by Name</label>
+        <input type="text" id="filter-name" placeholder="Type a name..." oninput="applyFilters()" />
+      </div>
+      <div class="filter-group">
+        <label>Date From</label>
+        <input type="date" id="filter-date-from" onchange="applyFilters()" />
+      </div>
+      <div class="filter-group">
+        <label>Date To</label>
+        <input type="date" id="filter-date-to" onchange="applyFilters()" />
+      </div>
+      <div class="filter-group">
+        <label>Project Type</label>
+        <select id="filter-type" onchange="applyFilters()">
+          <option value="">All Types</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>State</label>
+        <select id="filter-state" onchange="applyFilters()">
+          <option value="">All States</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button class="btn btn-ghost btn-sm" onclick="clearFilters()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Clear
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th onclick="sortBy('timestamp')">Date <span class="sort-arrow">↕</span></th>
+              <th onclick="sortBy('name')">Name <span class="sort-arrow">↕</span></th>
+              <th onclick="sortBy('organization')">Organization <span class="sort-arrow">↕</span></th>
+              <th onclick="sortBy('email')">Email <span class="sort-arrow">↕</span></th>
+              <th onclick="sortBy('phone')">Phone <span class="sort-arrow">↕</span></th>
+              <th onclick="sortBy('projectType')">Project Type <span class="sort-arrow">↕</span></th>
+              <th onclick="sortBy('targetState')">State <span class="sort-arrow">↕</span></th>
+              <th>Notes</th>
+              <th style="width:50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr>
+              <td colspan="9">
+                <div class="loading-state">
+                  <div class="loading-spinner"></div>
+                  <p>Loading submissions...</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-footer">
+        <div class="table-footer-info" id="table-info">Showing 0 of 0 entries</div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <div class="per-page-select">
+            Show
+            <select id="per-page" onchange="changePerPage()">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            per page
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row Detail Modal -->
+  <div class="detail-overlay" id="detail-modal" onclick="if(event.target===this)closeDetail()">
+    <div class="detail-card" id="detail-card">
+      <button class="detail-close" onclick="closeDetail()">&times;</button>
+      <h3 style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;">Submission Details</h3>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+
+  <script>
+  // ════════════════════════════════════════════════════════════
+  // CONFIGURATION — Replace this URL with your Apps Script URL
+  // ════════════════════════════════════════════════════════════
+  const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzuU--elG4XRTAeFVuY0VatOlNDu8J29boRoGLWe8d86WDJMUWmky2HvX6X1xVQ48e_Zw/exec';
+
+  // ── State ──
+  let allData = [];
+  let filteredData = [];
+  let currentPage = 1;
+  let perPage = 25;
+  let sortField = 'timestamp';
+  let sortDir = 'desc';
+
+  // ── Fetch Data ──
+  async function fetchData() {
+    const btn = document.getElementById('refresh-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="loading-spinner" style="width:14px;height:14px;border-width:2px;margin:0;"></div> Loading...';
+
+    document.getElementById('table-body').innerHTML = `
+      <tr><td colspan="9">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>Fetching submissions from Google Sheets...</p>
+        </div>
+      </td></tr>`;
+
+    try {
+      const res = await fetch(SHEET_API_URL + '?action=getAll');
+      const json = await res.json();
+
+      if (json.status === 'success' && Array.isArray(json.data)) {
+        allData = json.data.map((row, i) => ({ ...row, _index: i }));
+        populateFilterDropdowns();
+        applyFilters();
+        updateStats();
+      } else {
+        throw new Error(json.message || 'Invalid response');
+      }
+    } catch (err) {
+      console.error('Fetch error:', err);
+      document.getElementById('table-body').innerHTML = `
+        <tr><td colspan="9">
+          <div class="error-state">
+            <p>⚠ Failed to load data. Check your Apps Script URL and deployment.</p>
+            <p style="font-size:12px;color:var(--muted);margin-top:8px;">${err.message}</p>
+            <button class="btn btn-outline" style="margin-top:16px;" onclick="fetchData()">Retry</button>
+          </div>
+        </td></tr>`;
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Refresh`;
+    }
+  }
+
+  // ── Stats ──
+  function updateStats() {
+    document.getElementById('stat-total').textContent = allData.length;
+
+    // This month
+    const now = new Date();
+    const monthData = allData.filter(r => {
+      const d = new Date(r.timestamp);
+      return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+    });
+    document.getElementById('stat-month').textContent = monthData.length;
+    document.getElementById('stat-month-label').textContent = now.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+    // Top project type
+    const typeCounts = {};
+    allData.forEach(r => { if (r.projectType) typeCounts[r.projectType] = (typeCounts[r.projectType] || 0) + 1; });
+    const topType = Object.entries(typeCounts).sort((a, b) => b[1] - a[1])[0];
+    document.getElementById('stat-top-type').textContent = topType ? topType[0] : '—';
+    document.getElementById('stat-top-type-count').textContent = topType ? `${topType[1]} submissions` : '';
+
+    // Top state
+    const stateCounts = {};
+    allData.forEach(r => { if (r.targetState) stateCounts[r.targetState] = (stateCounts[r.targetState] || 0) + 1; });
+    const topState = Object.entries(stateCounts).sort((a, b) => b[1] - a[1])[0];
+    document.getElementById('stat-top-state').textContent = topState ? topState[0] : '—';
+    document.getElementById('stat-top-state-count').textContent = topState ? `${topState[1]} submissions` : '';
+  }
+
+  // ── Filter Dropdowns ──
+  function populateFilterDropdowns() {
+    const types = [...new Set(allData.map(r => r.projectType).filter(Boolean))].sort();
+    const states = [...new Set(allData.map(r => r.targetState).filter(Boolean))].sort();
+
+    const typeSelect = document.getElementById('filter-type');
+    typeSelect.innerHTML = '<option value="">All Types</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
+
+    const stateSelect = document.getElementById('filter-state');
+    stateSelect.innerHTML = '<option value="">All States</option>' + states.map(s => `<option value="${s}">${s}</option>`).join('');
+  }
+
+  // ── Apply Filters ──
+  function applyFilters() {
+    const nameQuery = document.getElementById('filter-name').value.toLowerCase().trim();
+    const dateFrom = document.getElementById('filter-date-from').value;
+    const dateTo = document.getElementById('filter-date-to').value;
+    const typeFilter = document.getElementById('filter-type').value;
+    const stateFilter = document.getElementById('filter-state').value;
+
+    filteredData = allData.filter(row => {
+      // Name filter
+      if (nameQuery && !(row.name || '').toLowerCase().includes(nameQuery)) return false;
+
+      // Date filters
+      if (dateFrom || dateTo) {
+        const rowDate = new Date(row.timestamp);
+        if (isNaN(rowDate.getTime())) return false;
+        const rowDateStr = rowDate.toISOString().split('T')[0];
+        if (dateFrom && rowDateStr < dateFrom) return false;
+        if (dateTo && rowDateStr > dateTo) return false;
+      }
+
+      // Type filter
+      if (typeFilter && row.projectType !== typeFilter) return false;
+
+      // State filter
+      if (stateFilter && row.targetState !== stateFilter) return false;
+
+      return true;
+    });
+
+    // Sort
+    doSort();
+
+    currentPage = 1;
+    renderTable();
+  }
+
+  function clearFilters() {
+    document.getElementById('filter-name').value = '';
+    document.getElementById('filter-date-from').value = '';
+    document.getElementById('filter-date-to').value = '';
+    document.getElementById('filter-type').value = '';
+    document.getElementById('filter-state').value = '';
+    applyFilters();
+  }
+
+  // ── Sorting ──
+  function sortBy(field) {
+    if (sortField === field) {
+      sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortField = field;
+      sortDir = field === 'timestamp' ? 'desc' : 'asc';
+    }
+    doSort();
+    renderTable();
+
+    // Update header styles
+    document.querySelectorAll('thead th').forEach(th => th.classList.remove('sorted'));
+  }
+
+  function doSort() {
+    filteredData.sort((a, b) => {
+      let valA = a[sortField] || '';
+      let valB = b[sortField] || '';
+
+      if (sortField === 'timestamp') {
+        valA = new Date(valA).getTime() || 0;
+        valB = new Date(valB).getTime() || 0;
+      } else {
+        valA = String(valA).toLowerCase();
+        valB = String(valB).toLowerCase();
+      }
+
+      if (valA < valB) return sortDir === 'asc' ? -1 : 1;
+      if (valA > valB) return sortDir === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  // ── Render Table ──
+  function renderTable() {
+    const tbody = document.getElementById('table-body');
+    const total = filteredData.length;
+    const totalPages = Math.ceil(total / perPage) || 1;
+
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * perPage;
+    const end = Math.min(start + perPage, total);
+    const pageData = filteredData.slice(start, end);
+
+    if (total === 0) {
+      tbody.innerHTML = `
+        <tr><td colspan="9">
+          <div class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <p>No submissions found matching your filters.</p>
+          </div>
+        </td></tr>`;
+    } else {
+      tbody.innerHTML = pageData.map(row => {
+        const d = new Date(row.timestamp);
+        const dateStr = isNaN(d.getTime()) ? '—' : d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+        const timeStr = isNaN(d.getTime()) ? '' : d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        const typeBadge = getTypeBadge(row.projectType);
+
+        return `<tr onclick="showDetail(${row._index})" style="cursor:pointer;">
+          <td class="date-cell">${dateStr}<br><span style="font-size:11px;opacity:0.6;">${timeStr}</span></td>
+          <td class="name-cell">${esc(row.name)}</td>
+          <td>${esc(row.organization) || '<span style="color:var(--muted)">—</span>'}</td>
+          <td class="email-cell"><a href="mailto:${esc(row.email)}" onclick="event.stopPropagation()">${esc(row.email)}</a></td>
+          <td class="phone-cell">${esc(row.phone)}</td>
+          <td>${typeBadge}</td>
+          <td>${esc(row.targetState) || '<span style="color:var(--muted)">—</span>'}</td>
+          <td class="notes-cell" title="${esc(row.notes)}">${esc(row.notes) || '<span style="color:var(--muted)">—</span>'}</td>
+          <td>
+            <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showDetail(${row._index})" title="View details">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    // Table info
+    document.getElementById('table-info').textContent = total === 0
+      ? 'No entries found'
+      : `Showing ${start + 1}–${end} of ${total} entries` + (total < allData.length ? ` (filtered from ${allData.length})` : '');
+
+    renderPagination(totalPages);
+  }
+
+  function getTypeBadge(type) {
+    if (!type) return '<span class="badge badge-gray">—</span>';
+    const map = {
+      'Solar Street Lighting': 'red',
+      'Solar High Mast Lighting': 'amber',
+      'Solar PV / Power Plant': 'green',
+      'Battery Storage (LiFePO4)': 'blue',
+      'Remote Monitoring (RMS)': 'blue',
+      'AMC / O&M': 'amber',
+      'Other / General Inquiry': 'gray'
+    };
+    const color = map[type] || 'gray';
+    return `<span class="badge badge-${color}">${esc(type)}</span>`;
+  }
+
+  // ── Pagination ──
+  function renderPagination(totalPages) {
+    const container = document.getElementById('pagination');
+    if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+    let html = `<button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>&lsaquo;</button>`;
+
+    const pages = getPaginationRange(currentPage, totalPages);
+    pages.forEach(p => {
+      if (p === '...') {
+        html += '<span class="page-ellipsis">…</span>';
+      } else {
+        html += `<button onclick="goToPage(${p})" class="${p === currentPage ? 'active' : ''}">${p}</button>`;
+      }
+    });
+
+    html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>&rsaquo;</button>`;
+    container.innerHTML = html;
+  }
+
+  function getPaginationRange(current, total) {
+    if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+    if (current <= 3) return [1, 2, 3, 4, '...', total];
+    if (current >= total - 2) return [1, '...', total - 3, total - 2, total - 1, total];
+    return [1, '...', current - 1, current, current + 1, '...', total];
+  }
+
+  function goToPage(page) {
+    const totalPages = Math.ceil(filteredData.length / perPage) || 1;
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    renderTable();
+    document.querySelector('.table-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function changePerPage() {
+    perPage = parseInt(document.getElementById('per-page').value) || 25;
+    currentPage = 1;
+    renderTable();
+  }
+
+  // ── Row Detail ──
+  function showDetail(index) {
+    const row = allData[index];
+    if (!row) return;
+
+    const d = new Date(row.timestamp);
+    const dateStr = isNaN(d.getTime()) ? '—' : d.toLocaleString('en-IN', { dateStyle: 'long', timeStyle: 'short' });
+
+    const fields = [
+      ['Submitted', dateStr],
+      ['Name', row.name],
+      ['Organization', row.organization],
+      ['Email', row.email ? `<a href="mailto:${esc(row.email)}" style="color:var(--blue);">${esc(row.email)}</a>` : '—'],
+      ['Phone', row.phone ? `<a href="tel:${esc(row.phone)}" style="color:var(--blue);">${esc(row.phone)}</a>` : '—'],
+      ['Project Type', row.projectType || '—'],
+      ['Target State', row.targetState || '—'],
+      ['District', row.district || '—'],
+      ['Quantity / Capacity', row.quantity || '—'],
+      ['Notes', row.notes || '—']
+    ];
+
+    document.getElementById('detail-body').innerHTML = fields.map(([label, value]) =>
+      `<div class="detail-row">
+        <div class="detail-label">${label}</div>
+        <div class="detail-value">${value}</div>
+      </div>`
+    ).join('');
+
+    document.getElementById('detail-modal').classList.add('open');
+  }
+
+  function closeDetail() {
+    document.getElementById('detail-modal').classList.remove('open');
+  }
+
+  // ── Export CSV ──
+  function exportCSV() {
+    if (filteredData.length === 0) { alert('No data to export.'); return; }
+
+    const headers = ['Date', 'Name', 'Organization', 'Email', 'Phone', 'Project Type', 'State', 'District', 'Quantity', 'Notes'];
+    const rows = filteredData.map(r => [
+      new Date(r.timestamp).toLocaleString('en-IN'),
+      r.name, r.organization, r.email, r.phone,
+      r.projectType, r.targetState, r.district, r.quantity, r.notes
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map(row => row.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+
+    const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `contact-submissions-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ── Utility ──
+  function esc(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // ── Keyboard shortcuts ──
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDetail();
+  });
+
+  // ── Init ──
+  fetchData();
+  </script>
+</body>
+</html>

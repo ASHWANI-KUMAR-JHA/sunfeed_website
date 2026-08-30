@@ -64,10 +64,20 @@ function navigateTo(page, subSection) {
     lucide.createIcons();
     initScrollAnimations();
 
+    // Init solutions tab observer when on solutions page
+    if (page === 'solutions') {
+      initSolutionsTabObserver();
+    }
+
     if (subSection) {
       setTimeout(() => {
         const el = document.getElementById(subSection);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) {
+          const navH = (document.getElementById('main-nav')?.offsetHeight || 70);
+          const tabH = (document.getElementById('sol-tab-bar')?.offsetHeight || 56);
+          const y = el.getBoundingClientRect().top + window.pageYOffset - navH - tabH - 8;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
       }, 150);
     }
   }, 50);
@@ -416,6 +426,62 @@ function toggleGallery(btn) {
 // ==========================================================
 // SCROLL ANIMATIONS - SHINE ON SCROLL EFFECT
 // ==========================================================
+
+// ==========================================================
+// SCROLL TO SECTION / SOLUTION HELPERS
+// ==========================================================
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const navH = document.getElementById('main-nav')?.offsetHeight || 70;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - navH - 10;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+function scrollToSolution(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = (document.getElementById('main-nav')?.offsetHeight || 70);
+  const tabH = (document.getElementById('sol-tab-bar')?.offsetHeight || 56);
+  const y = el.getBoundingClientRect().top + window.pageYOffset - navH - tabH - 8;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+
+  // Update active tab
+  document.querySelectorAll('.sol-tab').forEach(t => t.classList.remove('active'));
+  const tab = document.querySelector(`.sol-tab[data-target="${id}"]`);
+  if (tab) tab.classList.add('active');
+}
+
+// Solutions tab bar: highlight active tab on scroll & sticky behavior
+function initSolutionsTabObserver() {
+  const tabBar = document.getElementById('sol-tab-bar');
+  if (!tabBar) return;
+
+  const sections = document.querySelectorAll('.sol-detail-section');
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.sol-tab').forEach(t => t.classList.remove('active'));
+        const tab = document.querySelector(`.sol-tab[data-target="${id}"]`);
+        if (tab) {
+          tab.classList.add('active');
+          // scroll tab into view if overflowing
+          tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, {
+    rootMargin: '-120px 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(s => observer.observe(s));
+}
+
 function initScrollAnimations() {
   // Use setTimeout to ensure DOM is fully rendered
   setTimeout(() => {
