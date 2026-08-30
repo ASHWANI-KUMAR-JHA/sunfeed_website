@@ -488,21 +488,6 @@ function renderHomePage() {
     <!-- Certifications on Home -->
     ${renderCertificationsSection()}
 
-    <!-- Testimonials -->
-    <section class="section section-warm" id="testimonial-container">
-      <div class="container">
-        <div class="section-header text-center" style="max-width:640px;margin:0 auto 40px;">
-          <div class="badge"><i data-lucide="quote"></i> Project Experience</div>
-          <h3 style="font-size:24px;font-weight:800;">Feedback from Nodal Deployments</h3>
-          <p style="font-size:12px;color:var(--muted);">Sample feedback illustrative of state renewable energy agency execution standards.</p>
-        </div>
-        <div class="testimonial-card" id="testimonial-card"></div>
-        <div class="testimonial-dots" style="display:flex;justify-content:center;gap:6px;margin-top:20px;">
-          ${TESTIMONIALS.map((_, i) => `<div class="testimonial-dot ${i === 0 ? 'active' : ''}" onclick="setTestimonial(${i})"></div>`).join('')}
-        </div>
-      </div>
-    </section>
-
     <!-- Contact Section -->
     <section class="section section-warm">
       <div class="container">
