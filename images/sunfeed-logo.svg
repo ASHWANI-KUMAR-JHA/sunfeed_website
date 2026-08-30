@@ -1,0 +1,17 @@
+<svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- S Element in Solar Orange #F15A24 -->
+  <path d="M 10 20 C 10 12, 20 6, 36 6 L 80 6 C 90 6, 96 12, 96 19 C 96 26, 88 32, 78 32 L 40 32 C 32 32, 28 35, 28 40 C 28 45, 34 48, 44 48 L 76 48 C 66 58, 48 61, 30 61 C 15 61, 10 54, 10 44 Z" fill="#F15A24"/>
+  <path d="M 28 17 L 78 17 C 83 17, 86 19, 86 22 C 86 25, 83 27, 78 27 L 32 27 C 25 27, 21 24, 21 20 C 21 18, 24 17, 28 17 Z" fill="#FFFFFF"/>
+  <!-- F Element in Infrastructure Navy Blue #0B2F64 -->
+  <path d="M 46 48 L 92 48 C 97 48, 100 52, 98 58 C 97 64, 91 66, 83 66 L 56 66 C 47 66, 42 69, 39 73 L 11 73 C 21 64, 35 59, 46 48 Z" fill="#0B2F64"/>
+  <path d="M 64 34 L 96 34 C 100 34, 102 37, 100 41 C 99 45, 95 46, 88 46 L 56 46 C 60 41, 63 37, 64 34 Z" fill="#0B2F64"/>
+  
+  <!-- Divider -->
+  <line x1="110" y1="10" x2="110" y2="70" stroke="#CBD5E1" stroke-width="2"/>
+  
+  <!-- Wordmark -->
+  <text x="122" y="38" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="28" fill="#F15A24" letter-spacing="1">SUNFEED</text>
+  <text x="218" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#0B2F64">™</text>
+  <text x="122" y="55" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#0A6836" letter-spacing="3">ECOSOLUTIONS</text>
+  <text x="122" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-style="italic" font-weight="500" font-size="8.5" fill="#64748B">Energies Your Lives with Happiness....</text>
+</svg>
