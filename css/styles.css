@@ -53,6 +53,47 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* Subtle texture overlay */
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0,0,0,0.018) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* ==========================================================
+   SCROLL-DRIVEN SCALE ANIMATION
+   Elements grow from small to full size on scroll-in,
+   and shrink back when scrolling away.
+   ========================================================== */
+.scroll-scale {
+  opacity: 0;
+  transform: scale(0.85) translateY(30px);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-scale.in-view {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Stagger delays for grid children */
+.scroll-scale[data-delay="1"] { transition-delay: 0.06s; }
+.scroll-scale[data-delay="2"] { transition-delay: 0.12s; }
+.scroll-scale[data-delay="3"] { transition-delay: 0.18s; }
+.scroll-scale[data-delay="4"] { transition-delay: 0.24s; }
+.scroll-scale[data-delay="5"] { transition-delay: 0.30s; }
+.scroll-scale[data-delay="6"] { transition-delay: 0.36s; }
+.scroll-scale[data-delay="7"] { transition-delay: 0.42s; }
+.scroll-scale[data-delay="8"] { transition-delay: 0.48s; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -667,8 +708,18 @@ ul { list-style: none; }
 .section {
   padding: 80px 0;
 }
-.section-warm { background: var(--bg-warm); border-bottom: 1px solid var(--border-warm); }
-.section-white { background: white; border-bottom: 1px solid var(--border-warm); }
+.section-warm {
+  background-color: var(--bg-warm);
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.015) 1px, transparent 0);
+  background-size: 24px 24px;
+  border-bottom: 1px solid var(--border-warm);
+}
+.section-white {
+  background-color: white;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.012) 1px, transparent 0);
+  background-size: 24px 24px;
+  border-bottom: 1px solid var(--border-warm);
+}
 
 .section-header {
   margin-bottom: 48px;
@@ -1356,7 +1407,9 @@ ul { list-style: none; }
    FOOTER
    ========================================================== */
 .site-footer {
-  background: white;
+  background-color: white;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.012) 1px, transparent 0);
+  background-size: 24px 24px;
   color: var(--slate);
   border-top: 1px solid var(--border);
 }

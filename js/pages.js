@@ -837,7 +837,7 @@ function renderGovernmentPage() {
   };
 
   return `
-    ${renderBanner('Government & Institutional Solar Projects', 'Active solar implementation partner for state nodal agencies including BREDA (Bihar), HAREDA (Haryana), and HIMURJA (Himachal Pradesh).', 'State Nodal Operations', 'Projects')}
+    ${renderBanner('Government & Institutional Solar Projects', 'Active solar implementation partner for state nodal agencies including BREDA (Bihar), HAREDA (Haryana), and HIMURJA (Himachal Pradesh).', 'State Nodal Operations', 'Projects', 'images/government_banner.jpeg')}
     <section class="section section-white">
       <div class="container">
         <div style="display:flex;flex-direction:column;gap:32px;">
@@ -1093,7 +1093,7 @@ function renderClientsPage() {
 // ==========================================================
 function renderTechnologyPage() {
   return `
-    ${renderBanner('Technology & Remote Monitoring Systems (RMS)', 'Real-time IoT telemetry, 4G LTE/GPRS cloud communication, LiFePO4 battery management systems (BMS), and precision optical engineering.', 'IoT Telemetry & Standards', 'Engineering')}
+    ${renderBanner('Technology & Remote Monitoring Systems (RMS)', 'Real-time IoT telemetry, 4G LTE/GPRS cloud communication, LiFePO4 battery management systems (BMS), and precision optical engineering.', 'IoT Telemetry & Standards', 'Engineering', 'images/technology_rms_banner.svg')}
     <section class="section section-white">
       <div class="container">
         <div class="section-header">

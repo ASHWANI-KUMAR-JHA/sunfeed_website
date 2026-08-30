@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyBar();
   initAdvisoryBanner();
   renderPage('home');
+  initScrollAnimations();
 
   // Modal close on overlay click
   document.querySelectorAll('.modal-overlay').forEach(modal => {
@@ -434,17 +435,110 @@ function initScrollAnimations() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate');
-          // Optional: unobserve after animation completes
-          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
     // Observe all elements with shine-on-scroll class
     const elements = document.querySelectorAll('.shine-on-scroll');
-    console.log('Found shine-on-scroll elements:', elements.length);
     elements.forEach(element => {
       observer.observe(element);
+    });
+
+    // ===== Scroll-driven scale animation =====
+    // Broadly tag all meaningful content blocks inside #main-content
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) return;
+
+    const alreadyTagged = new WeakSet();
+
+    // Helper: tag an element if it's a real content node (not a wrapper like .container)
+    function tagElement(el, siblingIdx) {
+      if (alreadyTagged.has(el)) return;
+      // Skip the hero section — it has its own entrance animation
+      if (el.closest('.hero')) return;
+      // Skip elements that are inside another scroll-scale (avoid nesting)
+      if (el.parentElement && el.parentElement.closest('.scroll-scale')) return;
+      alreadyTagged.add(el);
+      el.classList.add('scroll-scale');
+      if (siblingIdx > 0 && siblingIdx <= 8) {
+        el.setAttribute('data-delay', siblingIdx);
+      }
+    }
+
+    // 1) All direct children of any grid/flex layout
+    const gridSelectors = [
+      '.grid-2 > *',
+      '.grid-3 > *',
+      '.grid-4 > *',
+      '.process-grid > *',
+      '.cert-grid > *',
+      '.pillars-grid-side > .pillar-card',
+      '.pillars-layout > *',
+      '.contact-grid > *',
+      '.footer-grid > *'
+    ];
+
+    gridSelectors.forEach(sel => {
+      mainContent.querySelectorAll(sel).forEach((el, idx) => {
+        tagElement(el, idx % 8);
+      });
+    });
+
+    // 2) Specific card types wherever they appear
+    const cardSelectors = [
+      '.benefit-card',
+      '.solution-card',
+      '.flip-card',
+      '.card',
+      '.agency-card',
+      '.process-step',
+      '.testimonial-card',
+      '.faq-item',
+      '.cert-card'
+    ];
+
+    cardSelectors.forEach(sel => {
+      mainContent.querySelectorAll(sel).forEach((el, idx) => {
+        const siblings = Array.from(el.parentElement.children);
+        tagElement(el, siblings.indexOf(el) % 8);
+      });
+    });
+
+    // 3) Section headers & section-level blocks
+    mainContent.querySelectorAll('.section-header, .section-top').forEach(el => {
+      tagElement(el, 0);
+    });
+
+    // 4) Any inline style grids (pages.js uses style="display:grid;..." wrappers)
+    mainContent.querySelectorAll('[style*="display:grid"] > *, [style*="display: grid"] > *').forEach((el, idx) => {
+      tagElement(el, idx % 8);
+    });
+
+    // 5) Standalone content blocks: images, info panels, stat rows, etc.
+    mainContent.querySelectorAll(
+      '.pillars-image-side, .contact-info-item, .page-banner, .solutions-banner'
+    ).forEach(el => {
+      tagElement(el, 0);
+    });
+
+    // Intersection observer for scroll-scale: adds AND removes class on exit
+    const scaleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        } else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -30px 0px',
+      threshold: 0.05
+    });
+
+    mainContent.querySelectorAll('.scroll-scale').forEach(el => {
+      scaleObserver.observe(el);
     });
 
     // Add click flip functionality for mobile
@@ -453,5 +547,5 @@ function initScrollAnimations() {
         this.classList.toggle('flipped');
       });
     });
-  }, 100);
+  }, 120);
 }
