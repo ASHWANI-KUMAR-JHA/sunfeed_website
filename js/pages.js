@@ -489,33 +489,32 @@ function renderHomePage() {
     ${renderCertificationsSection()}
 
     <!-- Contact Section -->
-    <section class="section section-warm" style="position:relative;background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
-      <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);pointer-events:none;"></div>
-      <div class="container" style="position:relative;z-index:10;">
+    <section class="section section-warm" style="background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
+      <div class="container">
         <div class="contact-grid">
           <div class="contact-info">
-            <h3 style="font-size:22px;font-weight:700;color:#1A2C48;margin-bottom:16px;">Get in Touch</h3>
-            <p style="font-size:15px;color:#524A3B;line-height:1.7;margin-bottom:32px;">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
+            <h3 style="font-size:22px;font-weight:800;color:#0F172A;margin-bottom:16px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">Get in Touch</h3>
+            <p style="font-size:15px;color:#1E293B;font-weight:600;line-height:1.7;margin-bottom:32px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
            
             <div class="contact-info-item" style="margin-bottom:28px;">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="phone"></i></div>
               <div>
-                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">LANDLINE</span>
-                <a href="tel:+911244072847" style="font-size:16px;font-weight:600;color:#1A2C48;">+91-124-4072847</a>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">LANDLINE</span>
+                <a href="tel:+911244072847" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">+91-124-4072847</a>
               </div>
             </div>
             <div class="contact-info-item" style="margin-bottom:28px;">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="mail"></i></div>
               <div>
-                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">OFFICIAL EMAIL</span>
-                <a href="mailto:info.sunfeed@gmail.com" style="font-size:16px;font-weight:600;color:#1A2C48;">info.sunfeed@gmail.com</a>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">OFFICIAL EMAIL</span>
+                <a href="mailto:info.sunfeed@gmail.com" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">info.sunfeed@gmail.com</a>
               </div>
             </div>
             <div class="contact-info-item">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="map-pin"></i></div>
               <div>
-                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">CORPORATE OFFICE</span>
-                <span style="font-size:15px;color:#524A3B;font-weight:500;line-height:1.6;">${COMPANY.address}</span>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">CORPORATE OFFICE</span>
+                <span style="font-size:15px;color:#1E293B;font-weight:600;line-height:1.6;text-shadow:0 1px 2px rgba(255,255,255,0.8);">${COMPANY.address}</span>
               </div>
             </div>
           </div>
@@ -1740,33 +1739,32 @@ function renderCertificationsPage() {
 function renderContactPage() {
   return `
     ${renderBanner('Contact Us & Project Consultation', 'Get in touch with our engineering team for technical queries, feasibility discussions, tender RFPs, and official corporate consultations.', 'Direct Inquiry & Corporate Office', 'Contact', 'images/contact.png')}
-    <section class="section section-white" style="position:relative;background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
-      <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);pointer-events:none;"></div>
-      <div class="container" style="position:relative;z-index:10;">
+    <section class="section section-white" style="background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
+      <div class="container">
         <div class="contact-grid">
           <div class="contact-info">
-            <h3 style="font-size:22px;font-weight:700;color:#1A2C48;margin-bottom:16px;">Get in Touch</h3>
-            <p style="font-size:15px;color:#524A3B;line-height:1.7;margin-bottom:32px;">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
+            <h3 style="font-size:22px;font-weight:800;color:#0F172A;margin-bottom:16px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">Get in Touch</h3>
+            <p style="font-size:15px;color:#1E293B;font-weight:600;line-height:1.7;margin-bottom:32px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
            
             <div class="contact-info-item" style="margin-bottom:28px;">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="phone"></i></div>
               <div>
-                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">LANDLINE</span>
-                <a href="tel:+911244072847" style="font-size:16px;font-weight:600;color:#1A2C48;">+91-124-4072847</a>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">LANDLINE</span>
+                <a href="tel:+911244072847" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">+91-124-4072847</a>
               </div>
             </div>
             <div class="contact-info-item" style="margin-bottom:28px;">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="mail"></i></div>
               <div>
-                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">OFFICIAL EMAIL</span>
-                <a href="mailto:info.sunfeed@gmail.com" style="font-size:16px;font-weight:600;color:#1A2C48;">info.sunfeed@gmail.com</a>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">OFFICIAL EMAIL</span>
+                <a href="mailto:info.sunfeed@gmail.com" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">info.sunfeed@gmail.com</a>
               </div>
             </div>
             <div class="contact-info-item">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="map-pin"></i></div>
               <div>
-                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">CORPORATE OFFICE</span>
-                <span style="font-size:15px;color:#524A3B;font-weight:500;line-height:1.6;">${COMPANY.address}</span>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">CORPORATE OFFICE</span>
+                <span style="font-size:15px;color:#1E293B;font-weight:600;line-height:1.6;text-shadow:0 1px 2px rgba(255,255,255,0.8);">${COMPANY.address}</span>
               </div>
             </div>
           </div>
