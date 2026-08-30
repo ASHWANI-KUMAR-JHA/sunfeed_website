@@ -489,8 +489,9 @@ function renderHomePage() {
     ${renderCertificationsSection()}
 
     <!-- Contact Section -->
-    <section class="section section-warm" style="background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
-      <div class="container">
+    <section class="section section-warm" style="position:relative;background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);pointer-events:none;"></div>
+      <div class="container" style="position:relative;z-index:10;">
         <div class="contact-grid">
           <div class="contact-info">
             <h3 style="font-size:22px;font-weight:700;color:#1A2C48;margin-bottom:16px;">Get in Touch</h3>
@@ -1739,8 +1740,9 @@ function renderCertificationsPage() {
 function renderContactPage() {
   return `
     ${renderBanner('Contact Us & Project Consultation', 'Get in touch with our engineering team for technical queries, feasibility discussions, tender RFPs, and official corporate consultations.', 'Direct Inquiry & Corporate Office', 'Contact', 'images/contact.png')}
-    <section class="section section-white" style="background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
-      <div class="container">
+    <section class="section section-white" style="position:relative;background-image:url('images/contact_bg.png');background-size:cover;background-position:center bottom;background-repeat:no-repeat;min-height:600px;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);pointer-events:none;"></div>
+      <div class="container" style="position:relative;z-index:10;">
         <div class="contact-grid">
           <div class="contact-info">
             <h3 style="font-size:22px;font-weight:700;color:#1A2C48;margin-bottom:16px;">Get in Touch</h3>
