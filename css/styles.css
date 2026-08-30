@@ -1411,8 +1411,10 @@ ul { list-style: none; }
    ========================================================== */
 .site-footer {
   background-color: white;
-  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.012) 1px, transparent 0);
-  background-size: 24px 24px;
+  background-image: url('../images/bg.png'), radial-gradient(circle at 1px 1px, rgba(0,0,0,0.012) 1px, transparent 0);
+  background-position: center bottom, center;
+  background-repeat: no-repeat, repeat;
+  background-size: contain, 24px 24px;
   color: var(--slate);
   border-top: 1px solid var(--border);
 }
