@@ -1749,20 +1749,29 @@ function renderContactPage() {
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info">
-            <h3 style="font-size:20px;font-weight:700;">Get in Touch</h3>
-            <p style="font-size:14px;color:var(--muted);line-height:1.7;">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
+            <h3 style="font-size:22px;font-weight:700;color:#1A2C48;margin-bottom:16px;">Get in Touch</h3>
+            <p style="font-size:15px;color:#524A3B;line-height:1.7;margin-bottom:32px;">Our project desk is available for BOQ estimations, site feasibility assessments, compliance documentation, and formal tender inquiries.</p>
            
-            <div class="contact-info-item">
-              <div class="contact-info-icon"><i data-lucide="phone"></i></div>
-              <div><span class="label">Landline</span><br><a href="tel:+911244072847">+91-124-4072847</a></div>
+            <div class="contact-info-item" style="margin-bottom:28px;">
+              <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="phone"></i></div>
+              <div>
+                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">LANDLINE</span>
+                <a href="tel:+911244072847" style="font-size:16px;font-weight:600;color:#1A2C48;">+91-124-4072847</a>
+              </div>
+            </div>
+            <div class="contact-info-item" style="margin-bottom:28px;">
+              <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="mail"></i></div>
+              <div>
+                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">OFFICIAL EMAIL</span>
+                <a href="mailto:info.sunfeed@gmail.com" style="font-size:16px;font-weight:600;color:#1A2C48;">info.sunfeed@gmail.com</a>
+              </div>
             </div>
             <div class="contact-info-item">
-              <div class="contact-info-icon"><i data-lucide="mail"></i></div>
-              <div><span class="label">Official Email</span><br><a href="mailto:info.sunfeed@gmail.com">info.sunfeed@gmail.com</a></div>
-            </div>
-            <div class="contact-info-item">
-              <div class="contact-info-icon"><i data-lucide="map-pin"></i></div>
-              <div><span class="label">Corporate Office</span><br><span style="font-size:12px;color:var(--muted);font-weight:400;">${COMPANY.address}</span></div>
+              <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="map-pin"></i></div>
+              <div>
+                <span class="label" style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#8B8069;display:block;margin-bottom:4px;">CORPORATE OFFICE</span>
+                <span style="font-size:15px;color:#524A3B;font-weight:500;line-height:1.6;">${COMPANY.address}</span>
+              </div>
             </div>
           </div>
           <div>
