@@ -161,7 +161,6 @@ function renderHomePage() {
                   <div class="spec-row"><span>Lighting Hours:</span><strong>10-12 hrs/night</strong></div>
                   <div class="spec-row"><span>Backup:</span><strong>2-3 days</strong></div>
                   <div class="spec-row"><span>Monitoring:</span><strong>4G GPS RMS</strong></div>
-                  <div class="spec-row"><span>Warranty:</span><strong>3-5 Years</strong></div>
                 </div>
                 <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
               </div>
@@ -192,7 +191,6 @@ function renderHomePage() {
                   <div class="spec-row"><span>Coverage:</span><strong>Wide-area illumination</strong></div>
                   <div class="spec-row"><span>Structure:</span><strong>Hot-dip galvanized steel</strong></div>
                   <div class="spec-row"><span>Applications:</span><strong>Highways, parking, industrial</strong></div>
-                  <div class="spec-row"><span>Warranty:</span><strong>3-5 Years</strong></div>
                 </div>
                 <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
               </div>
@@ -254,7 +252,6 @@ function renderHomePage() {
                   <div class="spec-row"><span>Protection:</span><strong>Multi-level safety systems</strong></div>
                   <div class="spec-row"><span>Communication:</span><strong>CAN/RS485, remote monitoring</strong></div>
                   <div class="spec-row"><span>Applications:</span><strong>Residential, commercial, industrial</strong></div>
-                  <div class="spec-row"><span>Warranty:</span><strong>5-10 Years</strong></div>
                 </div>
                 <button type="button" class="btn-outline btn-sm full-width" onclick="navigateTo('contact')" style="margin-top:12px;">Request Quote</button>
               </div>
@@ -822,7 +819,7 @@ function getSolutionsData() {
       overview: 'Sunfeed designs and delivers turnkey solar photovoltaic power plants ranging from small 1 kWp rooftop installations to large multi-megawatt ground-mounted utility-scale projects. Our systems use Tier-1 mono PERC modules with 21%+ cell efficiency paired with high-performance string or central inverters and optional LiFePO₄ battery hybrid storage. We handle the complete project lifecycle — site assessment, system design, structural engineering, procurement, installation, grid synchronization, DISCOM net-metering approvals, testing, and commissioning. Our portfolio spans commercial, industrial, institutional, and government facilities, with active projects executed through state agencies like HIMURJA, HAREDA, and BREDA.',
       highlights: [
         'Turnkey EPC from 1 kWp rooftop to 20+ MW ground-mount utility scale',
-        'Tier-1 mono PERC modules with 21%+ cell efficiency and 25-year warranty',
+        'Tier-1 mono PERC modules with 21%+ cell efficiency',
         'On-Grid, Off-Grid, and Hybrid configurations with optional battery storage',
         'Complete DISCOM coordination for net-metering and grid synchronization',
         'Real-time generation monitoring via cloud-based portal and mobile app',
@@ -981,7 +978,7 @@ function getSolutionsData() {
       badge: 'Long-Term Support',
       image: 'images/factory_new.png',
       image2: 'images/MAINTENANCE  O&M_image.png',
-      overview: 'Sunfeed provides structured Annual Maintenance Contracts (AMC) and Operations & Maintenance (O&M) services for solar infrastructure deployed across India. Our maintenance framework is designed for large-scale government projects where uptime guarantees, rapid response times, and documented compliance are critical. We operate district-level maintenance hubs with equipped service vans, trained field technicians, and pre-positioned spare parts inventories. The maintenance program covers preventive inspection schedules, corrective breakdown response, component replacement, RMS-driven predictive maintenance, and comprehensive documentation for state nodal agency audits. With 58,000+ solar assets under active monitoring, our O&M team ensures sustained performance throughout the project\'s warranty and post-warranty lifecycle.',
+      overview: 'Sunfeed provides structured Annual Maintenance Contracts (AMC) and Operations & Maintenance (O&M) services for solar infrastructure deployed across India. Our maintenance framework is designed for large-scale government projects where uptime guarantees, rapid response times, and documented compliance are critical. We operate district-level maintenance hubs with equipped service vans, trained field technicians, and pre-positioned spare parts inventories. The maintenance program covers preventive inspection schedules, corrective breakdown response, component replacement, RMS-driven predictive maintenance, and comprehensive documentation for state nodal agency audits. With 58,000+ solar assets under active monitoring, our O&M team ensures sustained performance throughout the project lifecycle.',
       highlights: [
         'District-level maintenance hubs with dedicated service vans and spare parts',
         '48-hour emergency response SLA for critical breakdown situations',
@@ -1005,8 +1002,8 @@ function getSolutionsData() {
         { label: 'Uptime Target', value: '> 95% fleet operational availability' },
       ],
       applications: [
-        'Post-installation warranty maintenance for government solar lighting projects',
-        'Extended post-warranty AMC for 58,000+ solar street lights across Bihar',
+        'Post-installation maintenance for government solar lighting projects',
+        'Extended AMC for 58,000+ solar street lights across Bihar',
         'High mast tower maintenance including motorized crown lowering and inspection',
         'Solar PV plant O&M — panel cleaning, inverter health checks, DC string testing',
         'Battery health monitoring and proactive replacement scheduling',
@@ -1687,7 +1684,7 @@ function renderCareersPage() {
 // ==========================================================
 function renderFAQPage() {
   return `
-    ${renderBanner('Frequently Asked Questions (FAQ)', 'Detailed answers regarding our turnkey solar lighting, remote monitoring, state nodal procedures, warranties, and maintenance support.', 'Knowledge Base', 'Support')}
+    ${renderBanner('Frequently Asked Questions (FAQ)', 'Detailed answers regarding our turnkey solar lighting, remote monitoring, state nodal procedures, and maintenance support.', 'Knowledge Base', 'Support')}
     <section class="section section-white">
       <div class="container" style="max-width:800px;">
         ${FAQ_DATA.map(f => `
