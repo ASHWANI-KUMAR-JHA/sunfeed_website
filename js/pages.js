@@ -70,7 +70,7 @@ function renderHomePage() {
             <div class="benefit-card-inner">
               <!-- Front Side - Logo Only -->
               <div class="benefit-card-front">
-                <img src="images/govappepc.png" alt="Government Approved" class="benefit-logo" loading="lazy">
+                <img src="images/govt-institute2.png" alt="Government Approved" class="benefit-logo" loading="lazy">
               </div>
               <!-- Back Side - Content -->
               <div class="benefit-card-back">
@@ -84,7 +84,7 @@ function renderHomePage() {
             <div class="benefit-card-inner">
               <!-- Front Side - Logo Only -->
               <div class="benefit-card-front">
-                <img src="images/lifePo4.png" alt="LiFePO4 Battery" class="benefit-logo" loading="lazy">
+                <img src="images/life2.png" alt="LiFePO4 Battery" class="benefit-logo" loading="lazy">
               </div>
               <!-- Back Side - Content -->
               <div class="benefit-card-back">
