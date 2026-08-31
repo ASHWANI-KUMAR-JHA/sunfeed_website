@@ -729,7 +729,6 @@ function getSolutionsData() {
         { label: 'Lumen Output', value: '130 – 160 lm/W high-efficiency LEDs' },
         { label: 'Operating Temp', value: '-10°C to +60°C' },
         { label: 'Protection Rating', value: 'IP65 luminaire, IP67 battery enclosure' },
-        { label: 'Warranty', value: '3 – 5 years comprehensive' },
       ],
       applications: [
         'Village roads and gram panchayat pathways under MGSSLY and state solar schemes',
@@ -783,7 +782,6 @@ function getSolutionsData() {
         { label: 'Lowering System', value: 'Motorized winch / manual' },
         { label: 'Coverage Area', value: '1,500 – 3,000 sq.m per mast' },
         { label: 'Protection', value: 'IP66 floodlights, IP67 battery' },
-        { label: 'Warranty', value: '3 – 5 years comprehensive' },
       ],
       applications: [
         'Highway junctions, interchanges, and cloverleaf intersections',
@@ -837,7 +835,6 @@ function getSolutionsData() {
         { label: 'Monitoring', value: 'WiFi / 4G cloud portal + mobile app' },
         { label: 'Standards', value: 'IEC 61215, IEC 61730, MNRE specs' },
         { label: 'Net Metering', value: 'Full DISCOM coordination' },
-        { label: 'Warranty', value: '25 years module, 5 years inverter' },
       ],
       applications: [
         'Commercial and industrial rooftop installations for captive consumption',
@@ -891,7 +888,6 @@ function getSolutionsData() {
         { label: 'Operating Temp', value: '-10°C to +60°C' },
         { label: 'Self-discharge', value: '< 3% per month' },
         { label: 'Enclosure', value: 'IP67 weather-sealed housing' },
-        { label: 'Warranty', value: '5 – 10 years' },
       ],
       applications: [
         'Solar street light and high mast battery packs (12.8V – 48V)',
@@ -953,7 +949,7 @@ function getSolutionsData() {
         'Solar PV plant generation monitoring and performance ratio analysis',
         'Battery health and degradation trend analysis over multi-year periods',
         'District-wise and gram panchayat-level project progress tracking',
-        'Warranty claim validation through historical operational data',
+        'Historical operational data analysis for system validation',
       ],
       benefits: [
         'Complete fleet visibility — monitor thousands of assets from a single dashboard',
