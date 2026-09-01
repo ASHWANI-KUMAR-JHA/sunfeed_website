@@ -712,10 +712,11 @@ ul { list-style: none; }
   padding: 80px 0;
 }
 .section-warm {
-  background-image: url('../images/fourbg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: transparent !important;
+  background-image: url('../images/fourbg.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   border-bottom: 1px solid var(--border-warm);
 }
 .section-white {
