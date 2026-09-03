@@ -420,7 +420,7 @@ function renderHomePage() {
         </div>
         <div class="grid-4" style="gap:16px;">
           <div style="padding:16px;border-radius:var(--radius-lg);background:white;border:1px solid var(--border-warm);text-align:center;transition:all 0.25s;cursor:pointer;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.06)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <img src="images/breda_logo.png" alt="BREDA" loading="lazy" style="height:44px;object-fit:contain;margin:0 auto 8px;">
+            <img src="images/breda_logo.png" alt="BREDA" loading="lazy" style="height:44px;object-fit:contain;margin:0 auto 8px;padding:8px;background:#F8FAFC;border-radius:8px;">
             <div style="font-size:13px;font-weight:700;">BREDA</div>
             <div style="font-size:11px;color:var(--muted);">Bihar</div>
           </div>
