@@ -508,6 +508,13 @@ function renderHomePage() {
               </div>
             </div>
             <div class="contact-info-item">
+              <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="help-circle"></i></div>
+              <div>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">SUPPORT & QUERIES</span>
+                <a href="mailto:support@sunfeed.in" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">support@sunfeed.in</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
               <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="map-pin"></i></div>
               <div>
                 <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">CORPORATE OFFICE</span>
@@ -1278,6 +1285,35 @@ function renderClientsPage() {
       </div>
     </section>
 
+    <!-- BREDA Project Images -->
+    <section class="section section-warm">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge"><i data-lucide="image"></i> Project Gallery</div>
+          <h2>BREDA — Bihar Project Images</h2>
+          <p>Solar street lighting installations across Bihar districts.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card" style="padding:0;overflow:hidden;cursor:pointer;" onclick="openImageModal('images/b1.png','BREDA Project 1')">
+            <img src="images/b1.png" alt="BREDA Project 1" loading="lazy" style="width:100%;height:180px;object-fit:cover;">
+            <div style="padding:10px;"><p style="font-size:11px;color:var(--muted);">BREDA Installation — Site 1</p></div>
+          </div>
+          <div class="card" style="padding:0;overflow:hidden;cursor:pointer;" onclick="openImageModal('images/b2.png','BREDA Project 2')">
+            <img src="images/b2.png" alt="BREDA Project 2" loading="lazy" style="width:100%;height:180px;object-fit:cover;">
+            <div style="padding:10px;"><p style="font-size:11px;color:var(--muted);">BREDA Installation — Site 2</p></div>
+          </div>
+          <div class="card" style="padding:0;overflow:hidden;cursor:pointer;" onclick="openImageModal('images/b3.png','BREDA Project 3')">
+            <img src="images/b3.png" alt="BREDA Project 3" loading="lazy" style="width:100%;height:180px;object-fit:cover;">
+            <div style="padding:10px;"><p style="font-size:11px;color:var(--muted);">BREDA Installation — Site 3</p></div>
+          </div>
+          <div class="card" style="padding:0;overflow:hidden;cursor:pointer;" onclick="openImageModal('images/b4.png','BREDA Project 4')">
+            <img src="images/b4.png" alt="BREDA Project 4" loading="lazy" style="width:100%;height:180px;object-fit:cover;">
+            <div style="padding:10px;"><p style="font-size:11px;color:var(--muted);">BREDA Installation — Site 4</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- HIMURJA Project Images -->
     <section class="section section-warm">
       <div class="container">
@@ -1751,6 +1787,13 @@ function renderContactPage() {
               <div>
                 <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">OFFICIAL EMAIL</span>
                 <a href="mailto:info.sunfeed@gmail.com" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">info.sunfeed@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon" style="background:#FDECEC;color:#C41E2F;"><i data-lucide="help-circle"></i></div>
+              <div>
+                <span class="label" style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1E293B;display:block;margin-bottom:4px;text-shadow:0 1px 2px rgba(255,255,255,0.8);">SUPPORT & QUERIES</span>
+                <a href="mailto:support@sunfeed.in" style="font-size:16px;font-weight:700;color:#0F172A;text-shadow:0 1px 2px rgba(255,255,255,0.8);">support@sunfeed.in</a>
               </div>
             </div>
             <div class="contact-info-item">
